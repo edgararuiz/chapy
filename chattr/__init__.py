@@ -1,1 +1,1 @@
-from .prompt import chat
+from .chat import chat
