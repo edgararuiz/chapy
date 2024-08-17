@@ -1,6 +1,6 @@
-import requests
-import json
-import sys
+from requests import post
+from json import dumps, loads
+from sys import stdout
 
 def chat(prompt, stream = True, history = [], preview = False):
     return(
@@ -11,7 +11,6 @@ def chat(prompt, stream = True, history = [], preview = False):
             preview = preview
             )
         )
-
 
 def _ch_submit_ollama(prompt, stream = True, history = [], preview = False):
     url = "http://localhost:11434/api/chat"
@@ -40,10 +39,10 @@ def _ch_submit_ollama(prompt, stream = True, history = [], preview = False):
         print(data)
         return()
 
-    response = requests.post(url, data = json.dumps(data), headers = headers, stream = stream)
+    response = post(url, data = dumps(data), headers = headers, stream = stream)
     for line in response.iter_lines():
-        body = json.loads(line)
+        body = loads(line)
         resp = body.get("message")
         content = resp.get("content")
-        sys.stdout.write(content)
+        stdout.write(content)
 
