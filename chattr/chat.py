@@ -1,7 +1,9 @@
 from .backend_ollama import _ch_submit_ollama
 from os import path
+from time import sleep
 import socket
 import subprocess
+import webbrowser
 
 def chat(prompt, stream = True, history = [], preview = False):
     return(
@@ -13,19 +15,26 @@ def chat(prompt, stream = True, history = [], preview = False):
             )
         )
 
-def app():
-    sock = socket.socket()
-    sock.bind(('', 0))
-    port = sock.getsockname()[1]
+def app(host = '127.0.0.1', port = 'auto'):
+    
+    if port=='auto':
+        sock = socket.socket()
+        sock.bind(('', 0))
+        port = sock.getsockname()[1]
+
     app_dir = path.dirname(__file__)
     app_file = path.join(app_dir, "app.py")
+    
     args = [
     'shiny',
     'run', 
     app_file,
     '--port=' + str(port)
     ]
-    proc = subprocess.Popen(
+    subprocess.Popen(
         args,
         stdout=subprocess.PIPE
         )
+
+    sleep(1)
+    webbrowser.open('http://' + host + ":" + str(port))
