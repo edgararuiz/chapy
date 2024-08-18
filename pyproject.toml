@@ -4,6 +4,6 @@ version = "0.0.1"
 authors = [
   { name="Edgar Ruiz", email="edgararuiz@gmail.com" },
 ]
-description = "A small example package"
+description = "Enables interaction with different LLMs via the console and Shiny app"
 readme = "README.md"
 requires-python = ">=3.8"
