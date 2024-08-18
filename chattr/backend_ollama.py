@@ -20,7 +20,7 @@ def _ch_submit_ollama(prompt, stream = True, history = [], preview = False):
         ))
 
     data = dict(
-        model = "llama2",
+        model = "llama3.1",
         messages =  messages, 
         stream = stream
     )
