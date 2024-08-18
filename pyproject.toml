@@ -1,0 +1,9 @@
+[project]
+name = "chattr"
+version = "0.0.1"
+authors = [
+  { name="Edgar Ruiz", email="edgararuiz@gmail.com" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.8"
