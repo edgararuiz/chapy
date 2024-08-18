@@ -19,11 +19,11 @@ def _ch_submit_ollama(prompt, stream = True, history = [], preview = False):
         content = prompt
         ))
 
-    data = {
-        'model': 'llama2',
-        'messages' :  messages, 
-        'stream': stream
-        }
+    data = dict(
+        model = "llama2",
+        messages =  messages, 
+        stream = stream
+    )
 
     if preview:    
         print(data)
