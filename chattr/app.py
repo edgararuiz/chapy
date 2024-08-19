@@ -1,6 +1,7 @@
 import subprocess
 from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
+from json import dumps 
 
 def ui_general(x = ''):
     return(
@@ -49,17 +50,18 @@ def server(input: Inputs, output: Outputs, session: Session):
     @reactive.event(input.submit)
     def _():
         nonlocal proc
-        args = [
-            'python',
-            temp_script, 
-            f"--prompt='" + str(input.prompt()) + "'"
-            ]
-        proc = subprocess.Popen(
-            args,
-            stdout=subprocess.PIPE
-            )
         if input.prompt() != '':
             history.append(dict(role = "user", content = input.prompt()))
+            args = [
+                'python',
+                temp_script, 
+                f"--prompt=" + dumps(history) + ""
+                ]
+            proc = subprocess.Popen(
+                args,
+                stdout=subprocess.PIPE
+                )        
+            print(args)    
             ui.update_text("prompt", value= "")
             ui.insert_ui(  
                 ui.layout_columns(

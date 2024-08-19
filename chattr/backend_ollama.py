@@ -2,7 +2,7 @@ from requests import post
 from json import dumps, loads
 from sys import stdout
 
-def _ch_submit_ollama(prompt, stream = True, history = [], preview = False):
+def _ch_submit_ollama(prompt, stream = True, preview = False):
     url = "http://localhost:11434/api/chat"
 
     headers = {
@@ -17,7 +17,7 @@ def _ch_submit_ollama(prompt, stream = True, history = [], preview = False):
 
     try:
         prompt = loads(prompt)
-        messages.append(prompt)
+        messages = messages + prompt
     except ValueError:
         messages.append(dict(
             role =  "user", 
