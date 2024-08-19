@@ -14,9 +14,14 @@ def _ch_submit_ollama(prompt, stream = True, history = [], preview = False):
         role =  "system", 
         content = "You are a helpful coding assistant that uses Python for data analysis. Keep comments to a minimum."
         ))
-    messages.append(dict(
-        role =  "user", 
-        content = prompt
+
+    try:
+        prompt = loads(prompt)
+        messages.append(prompt)
+    except ValueError:
+        messages.append(dict(
+            role =  "user", 
+            content = prompt
         ))
 
     data = dict(
