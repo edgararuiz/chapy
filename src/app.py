@@ -3,15 +3,6 @@ from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from json import dumps 
 
-def ui_general(x = ''):
-    return(
-        "padding-top: 3px;" +\
-        "padding-bottom: 3px;" +\
-        "padding-left: 5px;" +\
-        "padding-right: 5px;" +\
-        x
-    )
-
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
     ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
@@ -22,8 +13,7 @@ app_ui = ui.page_fluid(
       ),        
       ui.input_text_area("prompt", "", width="100%", resize=False),
       ui.div(
-        ui.input_task_button("submit", "Submit", style = ui_general("font-size:65%; padding:4px; margin:2px")), 
-        #ui.input_task_button("options", "Options", style = ui_general("font-size:65%; padding:3px; margin:2px;"))
+        ui.input_task_button("submit", "Submit", style = "font-size:65%; padding:4px; margin:2px"), 
       ),
       col_widths= (1, 9, 2)
     ),
