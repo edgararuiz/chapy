@@ -5,6 +5,9 @@ import socket
 import subprocess
 import webbrowser
 
+history = []
+history.append("1")
+
 def chat(prompt, stream = True, preview = False):
     return(
         _ch_submit_ollama(
