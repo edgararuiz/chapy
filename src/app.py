@@ -13,20 +13,19 @@ def ui_general(x = ''):
     )
 
 app_ui = ui.page_fluid(
-    ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%;} "),
+    ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
     ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
-    ui.tags.style(".bslib-grid-item { padding:1px;}"),
-    ui.tags.style(".bslib-grid { padding:10px;}"),
+    ui.tags.style(".bslib-grid-item { padding:1px; margin:1px;}"),
     ui.layout_columns(
       ui.div(
-        ui.input_dark_mode(), 
+        ui.input_dark_mode(id = "mode"), 
       ),        
       ui.input_text_area("prompt", "", width="100%", resize=False),
       ui.div(
         ui.input_task_button("submit", "Submit", style = ui_general("font-size:65%; padding:4px; margin:2px")), 
         #ui.input_task_button("options", "Options", style = ui_general("font-size:65%; padding:3px; margin:2px;"))
       ),
-      col_widths= (1, 10, 1)
+      col_widths= (1, 9, 2)
     ),
     ui.layout_columns(
         ui.output_ui("value"),
@@ -79,14 +78,14 @@ def server(input: Inputs, output: Outputs, session: Session):
                     ui.p(), 
                     ui.card(
                         ui.markdown(input.prompt()), 
-                        style = "background-color: #196FB6; color: white;"
+                        style = "background-color: #376CA4; color: white;"
                         ),                                
                     col_widths= (1, 11)
                 ), 
                 selector= "#main", 
                 where = "afterEnd"
                 )                        
-
+                
     @render.text
     def value():
         nonlocal response
