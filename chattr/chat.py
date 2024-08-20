@@ -34,3 +34,6 @@ def app(host = '127.0.0.1', port = 'auto'):
 
     sleep(1)
     open('http://' + host + ":" + str(port))
+
+
+
