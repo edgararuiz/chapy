@@ -4,15 +4,20 @@ from time import sleep
 from socket import socket
 from subprocess import Popen, PIPE
 from webbrowser import open
+from json import dumps
+
+history = []
 
 def chat(prompt, stream = True, preview = False):
-    return(
-        _ch_submit_ollama(
-            prompt = prompt, 
-            stream = stream,
-            preview = preview
-            )
-        )
+    global history
+    history.append(dict(role = "user", content = prompt))
+    response = _ch_submit_ollama(
+        prompt = dumps(history), 
+        stream = stream,
+        preview = preview
+    )
+    history.append(dict(role = "assistant", content = response))
+    return()
 
 def app(host = '127.0.0.1', port = 'auto'):
     
