@@ -13,15 +13,23 @@ def ui_general(x = ''):
     )
 
 app_ui = ui.page_fluid(
+    ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%;} "),
+    ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
+    ui.tags.style(".bslib-grid-item { padding:1px;}"),
+    ui.tags.style(".bslib-grid { padding:1px;}"),
     ui.layout_columns(
       ui.input_text_area("prompt", "", width="100%", resize=False),
       ui.div(
-        ui.input_task_button("submit", "Submit", style = ui_general("font-size:55%;")), 
-        ui.input_task_button("options", "Options", style = ui_general("font-size:55%;"))
+        ui.input_task_button("submit", "Submit", style = ui_general("font-size:65%;")), 
+        ui.input_task_button("options", "Options", style = ui_general("font-size:65%;"))
       ),
-      col_widths= (11, 1)
+      col_widths= (10, 1)
     ),
-    ui.output_ui("value"),
+    ui.layout_columns(
+        ui.output_ui("value"),
+        ui.p(),
+        col_widths= (11, 1)
+        ),    
     ui.output_ui(id = "main")
     )
 
@@ -49,7 +57,7 @@ def server(input: Inputs, output: Outputs, session: Session):
     @reactive.effect
     @reactive.event(input.submit)
     def _():
-        nonlocal proc
+        nonlocal proc   
         if input.prompt() != '':
             history.append(dict(role = "user", content = input.prompt()))
             args = [
@@ -68,7 +76,7 @@ def server(input: Inputs, output: Outputs, session: Session):
                     ui.p(), 
                     ui.card(
                         ui.markdown(input.prompt()), 
-                        style = ui_general("background-color: #196FB6; color: white;")
+                        style = "background-color: #196FB6; color: white;"
                         ),                                
                     col_widths= (1, 11)
                 ), 
@@ -91,7 +99,7 @@ def server(input: Inputs, output: Outputs, session: Session):
                 if response != '':    
                     ui.insert_ui(                        
                         ui.layout_columns(
-                            ui.card(ui.markdown(response)),
+                            ui.card(ui.markdown(response), style = "padding:0; margin:0"),
                             ui.p(),
                             col_widths= (11, 1)
                             ), 
@@ -103,7 +111,6 @@ def server(input: Inputs, output: Outputs, session: Session):
                         content = response
                         ))                 
                     response = ''           
-
         return ui.markdown(response)
 
 app = App(app_ui, server)
