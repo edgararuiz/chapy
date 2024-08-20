@@ -6,17 +6,17 @@ from subprocess import Popen, PIPE
 from webbrowser import open
 from json import dumps
 
-history = []
+_history = []
 
 def chat(prompt, stream = True, preview = False):
-    global history
-    history.append(dict(role = "user", content = prompt))
+    global _history
+    _history.append(dict(role = "user", content = prompt))
     response = _ch_submit_ollama(
-        prompt = dumps(history), 
+        prompt = dumps(_history), 
         stream = stream,
         preview = preview
     )
-    history.append(dict(role = "assistant", content = response))
+    _history.append(dict(role = "assistant", content = response))
     return()
 
 def app(host = '127.0.0.1', port = 'auto'):
