@@ -1,7 +1,17 @@
 from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
-from json import dumps 
+from json import dumps, loads
+from os import _exists
+
+if "_history_file" in locals():
+    if _exists(_history_file):
+        history = loads(open(_history_file, "r").read())
+    else:
+        history = []
+else:
+    history = []
+    _history_file = NamedTemporaryFile().name
 
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
@@ -24,8 +34,6 @@ app_ui = ui.page_fluid(
         ),    
     ui.output_ui(id = "main")
     )
-
-history = []
 
 code = "" +\
     "import chattr" + "\n" +\
