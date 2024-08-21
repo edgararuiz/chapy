@@ -1,5 +1,5 @@
 from .utils import _ch_open_config
-from requests import post
+from requests import post, get
 from json import dumps, loads
 from sys import stdout
 
@@ -46,4 +46,22 @@ def _ch_submit_ollama(prompt, stream = True, preview = False):
         out = out + content
         stdout.write(content)
 
+    return(out)
+
+def _ch_models_olama():
+    defaults = _ch_open_config("ollama").get("default")
+    response = get(url = defaults.get("path") + "api/tags")
+    tags = []
+    for tag in response.iter_lines():
+        tags.append(loads(tag))
+    tags = tags[0]
+    models = tags.get("models")
+    out = []
+    for model in models:
+        m = dict(
+            name = "ollama",
+            model = model.get("model"),
+            label = 'Ollama - ' + model.get("name")
+            )
+        out.append(m)
     return(out)
