@@ -1,0 +1,10 @@
+default:
+  provider: Ollama
+  model: llama2
+  path: http://localhost:11434/
+  label:  Ollama
+  include_history: FALSE
+  max_data_files: 0
+  max_data_frames: 0
+  include_doc_contents: FALSE
+  system_msg: You are a helpful coding assistant that uses Python to analyze data. Keep coments brief

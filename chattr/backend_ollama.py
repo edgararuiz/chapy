@@ -1,9 +1,12 @@
+from .utils import _ch_open_config
 from requests import post
 from json import dumps, loads
 from sys import stdout
 
 def _ch_submit_ollama(prompt, stream = True, preview = False):
-    url = "http://localhost:11434/api/chat"
+    defaults = _ch_open_config("ollama").get("default")
+
+    url =  defaults.get("path") + "api/chat"
 
     headers = {
         "Content-Type": "application/json"
@@ -12,7 +15,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False):
     messages = []
     messages.append(dict(
         role =  "system", 
-        content = "You are a helpful coding assistant that uses Python for data analysis. Keep comments to a minimum."
+        content = defaults.get("system_msg")
         ))
 
     try:
@@ -25,7 +28,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False):
         ))
 
     data = dict(
-        model = "llama3.1",
+        model = defaults.get("model"),
         messages =  messages, 
         stream = stream
     )
@@ -34,9 +37,14 @@ def _ch_submit_ollama(prompt, stream = True, preview = False):
         print(data)
         return()
 
+    out = ""
+    
     response = post(url, data = dumps(data), headers = headers, stream = stream)
     for line in response.iter_lines():
         body = loads(line)
         resp = body.get("message")
         content = resp.get("content")
+        out = out + content
         stdout.write(content)
+
+    return(out)

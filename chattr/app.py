@@ -1,4 +1,4 @@
-import subprocess
+from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from json import dumps 
@@ -57,9 +57,9 @@ def server(input: Inputs, output: Outputs, session: Session):
                 temp_script, 
                 f"--prompt=" + dumps(history) + ""
                 ]
-            proc = subprocess.Popen(
+            proc = Popen(
                 args,
-                stdout=subprocess.PIPE
+                stdout = PIPE
                 )        
             print(args)    
             ui.update_text("prompt", value= "")
