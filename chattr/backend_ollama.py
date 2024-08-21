@@ -6,12 +6,6 @@ from sys import stdout
 def _ch_submit_ollama(prompt, stream = True, preview = False):
     defaults = _ch_open_config("ollama").get("default")
 
-    url =  defaults.get("path") + "api/chat"
-
-    headers = {
-        "Content-Type": "application/json"
-    }
-
     messages = []
     messages.append(dict(
         role =  "system", 
@@ -37,9 +31,14 @@ def _ch_submit_ollama(prompt, stream = True, preview = False):
         print(data)
         return()
 
-    out = ""
+    response = post(
+        url = defaults.get("path") + "api/chat", 
+        data = dumps(data),
+        headers = {"Content-Type": "application/json"}, 
+        stream = stream
+        )
     
-    response = post(url, data = dumps(data), headers = headers, stream = stream)
+    out = ""
     for line in response.iter_lines():
         body = loads(line)
         resp = body.get("message")
