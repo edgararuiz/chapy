@@ -7,6 +7,20 @@ from os import _exists
 if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name
 
+def app_temp_script(path):
+    code = "" +\
+        "import chattr" + "\n" +\
+        "import argparse" + "\n" +\
+        "parser = argparse.ArgumentParser()" + "\n" +\
+        "parser.add_argument('--prompt', default = '')" + "\n" +\
+        "parser.add_argument('--stream', type = bool, default = True)" + "\n" +\
+        "args = parser.parse_args()" + "\n" +\
+        "if args.prompt != '':" + "\n" +\
+        "    chattr.chat(args.prompt, args.stream, _history_file='" + path + "')"
+    temp_file = NamedTemporaryFile().name
+    open(temp_file, "w").write(code)
+    return(temp_file)
+
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
     ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
@@ -29,21 +43,7 @@ app_ui = ui.page_fluid(
     ui.output_ui(id = "main")
     )
 
-code = "" +\
-    "import chattr" + "\n" +\
-    "import argparse" + "\n" +\
-    "parser = argparse.ArgumentParser()" + "\n" +\
-    "parser.add_argument('--prompt', default = '')" + "\n" +\
-    "parser.add_argument('--stream', type = bool, default = True)" + "\n" +\
-    "args = parser.parse_args()" + "\n" +\
-    "if args.prompt != '':" + "\n" +\
-    "    chattr.chat(args.prompt, args.stream, _history_file='" + _history_file + "')"
-
-temp_file = NamedTemporaryFile()
-with open(temp_file.name, 'w') as f:
-    f.writelines(code)
-
-temp_script = temp_file.name
+temp_script = app_temp_script(_history_file)
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ''
