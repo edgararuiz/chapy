@@ -1,6 +1,6 @@
 default:
   provider: Ollama
-  model: llama2
+  model: llama3.1
   path: http://localhost:11434/
   label:  Ollama
   include_history: FALSE

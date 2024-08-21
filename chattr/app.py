@@ -1,7 +1,25 @@
 from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
-from json import dumps 
+from json import dumps, loads
+from os import _exists
+
+if "_history_file" not in locals():
+    _history_file = NamedTemporaryFile().name
+
+def app_temp_script(path):
+    code = "" +\
+        "import chattr" + "\n" +\
+        "import argparse" + "\n" +\
+        "parser = argparse.ArgumentParser()" + "\n" +\
+        "parser.add_argument('--prompt', default = '')" + "\n" +\
+        "parser.add_argument('--stream', type = bool, default = True)" + "\n" +\
+        "args = parser.parse_args()" + "\n" +\
+        "if args.prompt != '':" + "\n" +\
+        "    chattr.chat(args.prompt, args.stream, _history_file='" + path + "')"
+    temp_file = NamedTemporaryFile().name
+    open(temp_file, "w").write(code)
+    return(temp_file)
 
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
@@ -25,23 +43,7 @@ app_ui = ui.page_fluid(
     ui.output_ui(id = "main")
     )
 
-history = []
-
-code = "" +\
-    "import chattr" + "\n" +\
-    "import argparse" + "\n" +\
-    "parser = argparse.ArgumentParser()" + "\n" +\
-    "parser.add_argument('--prompt', default = '')" + "\n" +\
-    "parser.add_argument('--stream', type = bool, default = True)" + "\n" +\
-    "args = parser.parse_args()" + "\n" +\
-    "if args.prompt != '':" + "\n" +\
-    "    chattr.chat(args.prompt, args.stream)"
-
-temp_file = NamedTemporaryFile()
-with open(temp_file.name, 'w') as f:
-    f.writelines(code)
-
-temp_script = temp_file.name
+temp_script = app_temp_script(_history_file)
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ''
@@ -50,18 +52,16 @@ def server(input: Inputs, output: Outputs, session: Session):
     @reactive.event(input.submit)
     def _():
         nonlocal proc   
-        if input.prompt() != '':
-            history.append(dict(role = "user", content = input.prompt()))
+        if input.prompt() != '':            
             args = [
                 'python',
                 temp_script, 
-                f"--prompt=" + dumps(history) + ""
+                f"--prompt=" + input.prompt() + ""
                 ]
             proc = Popen(
                 args,
                 stdout = PIPE
                 )        
-            print(args)    
             ui.update_text("prompt", value= "")
             ui.insert_ui(  
                 ui.layout_columns(
@@ -100,12 +100,8 @@ def server(input: Inputs, output: Outputs, session: Session):
                             ), 
                         selector= "#main", 
                         where = "afterEnd"
-                    )    
-                    history.append(dict(
-                        role = "assistant",
-                        content = response
-                        ))                 
-                    response = ''           
+                    )            
+                    response = ''         
         return ui.markdown(response)
 
 app = App(app_ui, server)
