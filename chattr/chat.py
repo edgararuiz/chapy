@@ -10,6 +10,7 @@ from tempfile import NamedTemporaryFile
 
 _history_file = NamedTemporaryFile().name
 _default_file = NamedTemporaryFile().name
+_shiny_url = ''
 _history = []
 
 def use(provider = '', **kwargs):
@@ -40,22 +41,21 @@ def chat(prompt, stream = True, preview = False, **kwargs):
 
 def app(host = '127.0.0.1', port = 'auto'):
     global _history_file
+    global _shiny_url
+    if _shiny_url == '':
+        if port=='auto':
+            sock = socket()
+            sock.bind(('', 0))
+            port = sock.getsockname()[1]
+        app_file = path.join(path.dirname(__file__), "app.py")
+        py_script  = open(app_file, "r").read()
+        py_script = "_history_file = '"+ _history_file + "'\n" + py_script
+        temp_script = NamedTemporaryFile()
+        temp_script = str(temp_script.name) + '.py' 
+        open(temp_script, "w").write(py_script)
 
-    if port=='auto':
-        sock = socket()
-        sock.bind(('', 0))
-        port = sock.getsockname()[1]
-
-    app_file = path.join(path.dirname(__file__), "app.py")
-    
-    py_script  = open(app_file, "r").read()
-    py_script = "_history_file = '"+ _history_file + "'\n" + py_script
-    temp_script = NamedTemporaryFile()
-    temp_script = str(temp_script.name) + '.py' 
-    open(temp_script, "w").write(py_script)
-
-    args = ['shiny', 'run', temp_script, '--port=' + str(port)]
-    Popen(args, stdout= PIPE)
-    
-    sleep(1)
-    webbrowser.open('http://' + host + ":" + str(port))
+        args = ['shiny', 'run', temp_script, '--port=' + str(port)]
+        Popen(args, stdout= PIPE)
+        _shiny_url = 'http://' + host + ":" + str(port)
+        sleep(1)
+    webbrowser.open(_shiny_url)
