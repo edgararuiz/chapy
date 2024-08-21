@@ -4,13 +4,12 @@ from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from json import dumps, loads
 from os import _exists
 
+history = []
+
 if "_history_file" in locals():
     if _exists(_history_file):
         history = loads(open(_history_file, "r").read())
-    else:
-        history = []
 else:
-    history = []
     _history_file = NamedTemporaryFile().name
 
 app_ui = ui.page_fluid(
