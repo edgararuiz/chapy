@@ -4,12 +4,7 @@ from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from json import dumps, loads
 from os import _exists
 
-history = []
-
-if "_history_file" in locals():
-    if _exists(_history_file):
-        history = loads(open(_history_file, "r").read())
-else:
+if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name
 
 app_ui = ui.page_fluid(
@@ -57,8 +52,7 @@ def server(input: Inputs, output: Outputs, session: Session):
     @reactive.event(input.submit)
     def _():
         nonlocal proc   
-        if input.prompt() != '':
-            history.append(dict(role = "user", content = input.prompt()))
+        if input.prompt() != '':            
             args = [
                 'python',
                 temp_script, 
@@ -106,11 +100,7 @@ def server(input: Inputs, output: Outputs, session: Session):
                             ), 
                         selector= "#main", 
                         where = "afterEnd"
-                    )    
-                    history.append(dict(
-                        role = "assistant",
-                        content = response
-                        ))                 
+                    )            
                     response = ''         
         return ui.markdown(response)
 
