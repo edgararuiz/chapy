@@ -1,4 +1,5 @@
-from .backend_ollama import _ch_submit_ollama
+from .backend_ollama import _ch_submit_ollama, _ch_models_ollama
+from .utils import _ch_open_config
 from os import path, _exists
 from time import sleep
 from socket import socket
@@ -8,23 +9,32 @@ from json import dumps, loads
 from tempfile import NamedTemporaryFile
 
 _history_file = NamedTemporaryFile().name
+_default_file = NamedTemporaryFile().name
 _history = []
+
+def use(provider = '', **kwargs):
+    global _default_file
+    if not _exists(_default_file):
+        defaults = _ch_open_config("ollama")
+        open(_default_file, "w").write(dumps(defaults.get("default")))
 
 def chat(prompt, stream = True, preview = False, **kwargs):
     global _history
     global _history_file
+    global _default_file
     hf = kwargs.get("_history_file")
     if isinstance(hf, str):
         _history_file = hf
         if _exists(_history_file):
             _history = loads(open(_history_file, "r").read())
-
     _history.append(dict(role = "user", content = prompt))
-    response = _ch_submit_ollama(
-        prompt = dumps(_history), 
-        stream = stream,
-        preview = preview
-    )
+    use()
+    defaults = loads(open(_default_file, "r").read())
+    provider = defaults.get("provider")
+    if(provider == "Ollama"):        
+        response = _ch_submit_ollama(dumps(_history), stream, preview)
+    else:
+        return
     _history.append(dict(role = "assistant", content = response))
     open(_history_file, "w").write(dumps(_history))
 

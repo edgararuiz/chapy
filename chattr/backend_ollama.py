@@ -48,7 +48,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False):
 
     return(out)
 
-def _ch_models_olama():
+def _ch_models_ollama():
     defaults = _ch_open_config("ollama").get("default")
     response = get(url = defaults.get("path") + "api/tags")
     tags = []
