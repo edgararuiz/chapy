@@ -17,26 +17,18 @@ def chat(prompt, stream = True, preview = False):
         preview = preview
     )
     _history.append(dict(role = "assistant", content = response))
-    return()
 
 def app(host = '127.0.0.1', port = 'auto'):
-    
     if port=='auto':
         sock = socket()
         sock.bind(('', 0))
         port = sock.getsockname()[1]
 
-    app_dir = path.dirname(__file__)
-    app_file = path.join(app_dir, "app.py")
+    app_file = path.join(path.dirname(__file__), "app.py")
     
-    args = [
-    'shiny',
-    'run', 
-    app_file,
-    '--port=' + str(port)
-    ]
+    args = ['shiny', 'run', app_file, '--port=' + str(port)]
     Popen(args, stdout= PIPE)
-
+    
     sleep(1)
     open('http://' + host + ":" + str(port))
 
