@@ -43,7 +43,7 @@ code = "" +\
     "parser.add_argument('--stream', type = bool, default = True)" + "\n" +\
     "args = parser.parse_args()" + "\n" +\
     "if args.prompt != '':" + "\n" +\
-    "    chattr.chat(args.prompt, args.stream)"
+    "    chattr.chat(args.prompt, args.stream, _history_file='" + _history_file + "')"
 
 temp_file = NamedTemporaryFile()
 with open(temp_file.name, 'w') as f:
@@ -63,13 +63,12 @@ def server(input: Inputs, output: Outputs, session: Session):
             args = [
                 'python',
                 temp_script, 
-                f"--prompt=" + dumps(history) + ""
+                f"--prompt=" + input.prompt() + ""
                 ]
             proc = Popen(
                 args,
                 stdout = PIPE
                 )        
-            print(args)    
             ui.update_text("prompt", value= "")
             ui.insert_ui(  
                 ui.layout_columns(
@@ -113,7 +112,7 @@ def server(input: Inputs, output: Outputs, session: Session):
                         role = "assistant",
                         content = response
                         ))                 
-                    response = ''           
+                    response = ''         
         return ui.markdown(response)
 
 app = App(app_ui, server)

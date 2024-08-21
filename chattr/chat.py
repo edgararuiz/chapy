@@ -1,18 +1,24 @@
 from .backend_ollama import _ch_submit_ollama
-from os import path
+from os import path, _exists
 from time import sleep
 from socket import socket
 from subprocess import Popen, PIPE
 import webbrowser
-from json import dumps
+from json import dumps, loads
 from tempfile import NamedTemporaryFile
 
 _history_file = NamedTemporaryFile().name
 _history = []
 
-def chat(prompt, stream = True, preview = False):
+def chat(prompt, stream = True, preview = False, **kwargs):
     global _history
     global _history_file
+    hf = kwargs.get("_history_file")
+    if isinstance(hf, str):
+        _history_file = hf
+        if _exists(_history_file):
+            _history = loads(open(_history_file, "r").read())
+
     _history.append(dict(role = "user", content = prompt))
     response = _ch_submit_ollama(
         prompt = dumps(_history), 
