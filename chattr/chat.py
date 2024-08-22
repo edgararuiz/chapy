@@ -17,7 +17,15 @@ def use(provider = '', **kwargs):
     global _default_file
     if not _exists(_default_file):
         defaults = _ch_open_config("ollama")
-        open(_default_file, "w").write(dumps(defaults.get("default")))
+        defaults = defaults.get("default")
+        def_names = tuple(defaults.keys())
+        new_defs = kwargs
+        for n in def_names:
+            if isinstance(new_defs.get(n), str):
+                x = 0
+            else:
+                new_defs[n] = defaults.get(n)
+        open(_default_file, "w").write(dumps(new_defs))
 
 def chat(prompt, stream = True, preview = False, **kwargs):
     global _history
