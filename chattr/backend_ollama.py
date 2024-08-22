@@ -58,14 +58,14 @@ def _ch_models_ollama():
     out = []
     for model in models:
         m = dict(
-            name = "ollama",
+            provider = "ollama",
             model = model.get("model"),
             label = 'Ollama - ' + model.get("name")
             )
         out.append(m)
     return(out)
 
-def _ch_ollama_available():
+def _ch_available_ollama():
     defaults = _ch_open_config("ollama").get("default")
     import socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

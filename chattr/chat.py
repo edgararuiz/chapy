@@ -50,7 +50,7 @@ def _defaults():
     if not path.isfile(_default_file): 
         use()
     f = open(_default_file, "r").read()
-    return(loads(f))
+    return loads(f)
 
 def chat(prompt, stream = True, preview = False, **kwargs):
     global _history
@@ -61,8 +61,16 @@ def chat(prompt, stream = True, preview = False, **kwargs):
         _history_file = hf
         if path.isfile(_history_file):
             _history = loads(open(_history_file, "r").read())
+
+    df = kwargs.get("_default_file")
+    if isinstance(df, str):
+        _default_file = df
+        if path.isfile(_default_file):
+            defaults = loads(open(_default_file, "r").read())
+    else:
+        defaults = _defaults()
+
     _history.append(dict(role = "user", content = prompt))
-    defaults = _defaults()
     provider = defaults.get("provider")
     if(provider == "Ollama"):        
         response = _ch_submit_ollama(dumps(_history), stream, preview, defaults)
@@ -96,3 +104,4 @@ def app(host = '127.0.0.1', port = 'auto'):
         _shiny_url = 'http://' + host + ":" + str(port)
         sleep(1)
     webbrowser.open(_shiny_url)
+

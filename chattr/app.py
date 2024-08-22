@@ -7,7 +7,10 @@ from os import path
 if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name
 
-def app_temp_script(path):
+if "_default_file" not in locals():
+    _default_file = NamedTemporaryFile().name    
+
+def app_temp_script(history, default):
     code = "" +\
         "import chattr" + "\n" +\
         "import argparse" + "\n" +\
@@ -16,7 +19,9 @@ def app_temp_script(path):
         "parser.add_argument('--stream', type = bool, default = True)" + "\n" +\
         "args = parser.parse_args()" + "\n" +\
         "if args.prompt != '':" + "\n" +\
-        "    chattr.chat(args.prompt, args.stream, _history_file='" + path + "')"
+        "    chattr.chat(args.prompt, args.stream," +\
+            " _history_file='" + history + "'," +\
+            " _default_file='" + default + "')"
     temp_file = NamedTemporaryFile().name
     open(temp_file, "w").write(code)
     return(temp_file)
@@ -71,7 +76,7 @@ app_ui = ui.page_fluid(
     ui.output_ui(id = "main")
     )
 
-temp_script = app_temp_script(_history_file)
+temp_script = app_temp_script(_history_file, _default_file)
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ''
