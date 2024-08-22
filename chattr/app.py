@@ -1,6 +1,8 @@
 from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
+from json import loads
+from os import path
 
 if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name
@@ -20,15 +22,18 @@ def app_temp_script(path):
     return(temp_file)
 
 def app_add_user(x):
-    out = ui.layout_columns(
-        ui.p(), 
-        ui.card(
-            ui.markdown(x), 
-            style = "background-color: #376CA4; color: white;"
-            ),                                
-        col_widths= (1, 11)
-    )
-    return(out)
+    ui.insert_ui(  
+        ui.layout_columns(
+            ui.p(), 
+            ui.card(
+                ui.markdown(x), 
+                style = "background-color: #376CA4; color: white;"
+                ),                                
+            col_widths= (1, 11)
+        ),
+    selector= "#main", 
+    where = "afterEnd"
+    )                        
 
 def app_add_assistant(x):
     ui.insert_ui(                        
@@ -71,6 +76,18 @@ temp_script = app_temp_script(_history_file)
 def server(input: Inputs, output: Outputs, session: Session):
     response = ''
     proc = ''
+    
+    if path.isfile(_history_file):
+        history = loads(open(_history_file, "r").read())
+        for entries in history:
+            role = entries.get("role")
+            content = entries.get("content")
+            if role == "user":
+                app_add_user(content)
+            if role == "assistant":
+                app_add_assistant(content)
+
+
     @reactive.effect
     @reactive.event(input.submit)
     def _():
@@ -86,12 +103,8 @@ def server(input: Inputs, output: Outputs, session: Session):
                 stdout = PIPE
                 )        
             ui.update_text("prompt", value= "")
-            ui.insert_ui(  
-                app_add_user(input.prompt()), 
-                selector= "#main", 
-                where = "afterEnd"
-                )                        
-                
+            app_add_user(input.prompt())
+
     @render.text
     def value():
         nonlocal response
