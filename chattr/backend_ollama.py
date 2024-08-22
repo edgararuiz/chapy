@@ -28,7 +28,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
 
     if preview:    
         print(data)
-        return()
+        return ""
 
     response = post(
         url = defaults.get("path") + "api/chat", 
@@ -45,7 +45,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
         out = out + content
         stdout.write(content)
 
-    return(out)
+    return out
 
 def _ch_models_ollama():
     defaults = _ch_open_config("ollama").get("default")
@@ -63,7 +63,7 @@ def _ch_models_ollama():
             label = 'Ollama - ' + model.get("name")
             )
         out.append(m)
-    return(out)
+    return out
 
 def _ch_available_ollama():
     defaults = _ch_open_config("ollama").get("default")

@@ -61,14 +61,17 @@ def _merge_defaults(defaults, args):
     return defaults
 
 def chat(prompt, stream = True, preview = False, **kwargs):
-    global _history
     global _history_file
     global _default_file
+
     hf = kwargs.get("_history_file")
     if isinstance(hf, str):
         _history_file = hf
-        if path.isfile(_history_file):
-            _history = loads(open(_history_file, "r").read())
+
+    if path.isfile(_history_file):
+        history = loads(open(_history_file, "r").read())
+    else:
+        history = []
 
     df = kwargs.get("_default_file")
     if isinstance(df, str):
@@ -77,15 +80,17 @@ def chat(prompt, stream = True, preview = False, **kwargs):
             defaults = loads(open(_default_file, "r").read())
     else:
         defaults = _defaults()
-
-    _history.append(dict(role = "user", content = prompt))
     provider = defaults.get("provider")
+    response = ""
+    history.append(dict(role = "user", content = prompt))  
     if(provider == "Ollama"):        
-        response = _ch_submit_ollama(dumps(_history), stream, preview, defaults)
+        response = _ch_submit_ollama(dumps(history), stream, preview, defaults)
     else:
         return
-    _history.append(dict(role = "assistant", content = response))
-    open(_history_file, "w").write(dumps(_history))
+    if response == "":
+        return      
+    history.append(dict(role = "assistant", content = response))
+    open(_history_file, "w").write(dumps(history))
 
 def app(host = '127.0.0.1', port = 'auto'):
     global _history_file
