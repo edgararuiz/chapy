@@ -19,6 +19,31 @@ def app_temp_script(path):
     open(temp_file, "w").write(code)
     return(temp_file)
 
+def app_add_user(x):
+    out = ui.layout_columns(
+        ui.p(), 
+        ui.card(
+            ui.markdown(x), 
+            style = "background-color: #376CA4; color: white;"
+            ),                                
+        col_widths= (1, 11)
+    )
+    return(out)
+
+def app_add_assistant(x):
+    ui.insert_ui(                        
+        ui.layout_columns(
+            ui.card(
+                ui.markdown(x), 
+                style = "padding:0; margin:0; border-color: #ccc;"
+                ),
+            ui.p(),
+            col_widths= (11, 1)
+            ), 
+        selector= "#main", 
+        where = "afterEnd"
+    )       
+
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
     ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
@@ -62,14 +87,7 @@ def server(input: Inputs, output: Outputs, session: Session):
                 )        
             ui.update_text("prompt", value= "")
             ui.insert_ui(  
-                ui.layout_columns(
-                    ui.p(), 
-                    ui.card(
-                        ui.markdown(input.prompt()), 
-                        style = "background-color: #376CA4; color: white;"
-                        ),                                
-                    col_widths= (1, 11)
-                ), 
+                app_add_user(input.prompt()), 
                 selector= "#main", 
                 where = "afterEnd"
                 )                        
@@ -87,18 +105,7 @@ def server(input: Inputs, output: Outputs, session: Session):
                 response = response + out
             else:
                 if response != '':    
-                    ui.insert_ui(                        
-                        ui.layout_columns(
-                            ui.card(
-                                ui.markdown(response), 
-                                style = "padding:0; margin:0; border-color: #ccc;"
-                                ),
-                            ui.p(),
-                            col_widths= (11, 1)
-                            ), 
-                        selector= "#main", 
-                        where = "afterEnd"
-                    )            
+                    app_add_assistant(response)
                     response = ''         
         return ui.markdown(response)
 

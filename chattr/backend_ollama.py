@@ -18,7 +18,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
             role =  "user", 
             content = prompt
         ))
-    print(defaults.get("model"))
+        
     data = dict(
         model = defaults.get("model"),
         messages =  messages, 
