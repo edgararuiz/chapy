@@ -2,6 +2,7 @@ from .utils import _ch_open_config
 from requests import post, get
 from json import dumps, loads
 from sys import stdout
+import socket
 
 def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
     messages = []
@@ -18,7 +19,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
             role =  "user", 
             content = prompt
         ))
-        
+
     data = dict(
         model = defaults.get("model"),
         messages =  messages, 
@@ -63,3 +64,19 @@ def _ch_models_ollama():
             )
         out.append(m)
     return(out)
+
+def _ch_ollama_available():
+    defaults = _ch_open_config("ollama").get("default")
+    import socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    path = defaults.get("path")
+    ps = path.split(":")
+    url = ps[1].removeprefix("//")
+    port = ps[2].split("/")[0]
+    result = sock.connect_ex((url, int(port)))
+    if result == 0:
+        out = True
+    else:
+        out = False
+    sock.close()
+    return out
