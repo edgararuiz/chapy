@@ -1,8 +1,6 @@
 from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
-from json import dumps, loads
-from os import _exists
 
 if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name

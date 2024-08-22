@@ -1,6 +1,6 @@
 from .backend_ollama import _ch_submit_ollama, _ch_models_ollama
 from .utils import _ch_open_config
-from os import path, _exists
+from os import path
 from time import sleep
 from socket import socket
 from subprocess import Popen, PIPE
@@ -15,7 +15,7 @@ _history = []
 
 def use(provider = '', **kwargs):
     global _default_file
-    if not _exists(_default_file):
+    if not path.isfile(_default_file):
         defaults = _ch_open_config("ollama")
         defaults = defaults.get("default")
         def_names = tuple(defaults.keys())
@@ -27,6 +27,14 @@ def use(provider = '', **kwargs):
                 new_defs[n] = defaults.get(n)
         open(_default_file, "w").write(dumps(new_defs))
 
+def _defaults():
+    global _default_file
+    if path.isfile(_default_file): 
+        f = open(_default_file, "r").read()
+        print(loads(f))
+    else:
+        use()
+
 def chat(prompt, stream = True, preview = False, **kwargs):
     global _history
     global _history_file
@@ -34,14 +42,14 @@ def chat(prompt, stream = True, preview = False, **kwargs):
     hf = kwargs.get("_history_file")
     if isinstance(hf, str):
         _history_file = hf
-        if _exists(_history_file):
+        if path.isfile(_history_file):
             _history = loads(open(_history_file, "r").read())
     _history.append(dict(role = "user", content = prompt))
     use()
     defaults = loads(open(_default_file, "r").read())
     provider = defaults.get("provider")
     if(provider == "Ollama"):        
-        response = _ch_submit_ollama(dumps(_history), stream, preview)
+        response = _ch_submit_ollama(dumps(_history), stream, preview, defaults)
     else:
         return
     _history.append(dict(role = "assistant", content = response))

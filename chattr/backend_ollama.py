@@ -3,9 +3,7 @@ from requests import post, get
 from json import dumps, loads
 from sys import stdout
 
-def _ch_submit_ollama(prompt, stream = True, preview = False):
-    defaults = _ch_open_config("ollama").get("default")
-
+def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
     messages = []
     messages.append(dict(
         role =  "system", 
@@ -20,7 +18,7 @@ def _ch_submit_ollama(prompt, stream = True, preview = False):
             role =  "user", 
             content = prompt
         ))
-
+    print(defaults.get("model"))
     data = dict(
         model = defaults.get("model"),
         messages =  messages, 
