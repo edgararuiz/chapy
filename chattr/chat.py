@@ -11,7 +11,6 @@ from tempfile import NamedTemporaryFile
 _history_file = NamedTemporaryFile().name
 _default_file = NamedTemporaryFile().name
 _shiny_url = ''
-_history = []
 
 def use(provider = '', **kwargs):
     global _default_file
@@ -52,9 +51,7 @@ def _merge_defaults(defaults, args):
         def_names = tuple(defaults.keys())
         new_defs = args
         for n in def_names:
-            if n in new_defs:
-                x = 0
-            else:
+            if n not in new_defs:
                 new_defs[n] = defaults.get(n)
         defaults = new_defs 
     open(_default_file, "w").write(dumps(defaults))   
@@ -112,7 +109,7 @@ def app(host = '127.0.0.1', port = 'auto'):
         temp_script = str(temp_script.name) + '.py' 
         open(temp_script, "w").write(py_script)
 
-        args = ['shiny', 'run', temp_script, '--port=' + str(port)]
+        args = ['shiny', 'run', temp_script, '--port=' + str(port), '--host=' + host]
         Popen(args, stdout= PIPE)
         _shiny_url = 'http://' + host + ":" + str(port)
         sleep(1)
