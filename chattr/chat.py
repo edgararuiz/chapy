@@ -32,25 +32,33 @@ def use(provider = '', **kwargs):
     if provider == "ollama":
         defaults = _ch_open_config("ollama")
     defaults = defaults.get("default")
-    if len(kwargs) > 0:
-        def_names = tuple(defaults.keys())
-        new_defs = kwargs
-        for n in def_names:
-            if isinstance(new_defs.get(n), str):
-                x = 0
-            else:
-                new_defs[n] = defaults.get(n)
-        defaults = new_defs
+    defaults = _merge_defaults(defaults, kwargs) 
     if model != '':
         defaults['model'] = model
     open(_default_file, "w").write(dumps(defaults))
 
-def _defaults():
+def _defaults(**kwargs):
     global _default_file
     if not path.isfile(_default_file): 
         use()
-    f = open(_default_file, "r").read()
-    return loads(f)
+    defaults = open(_default_file, "r").read()
+    defaults = loads(defaults)
+    defaults = _merge_defaults(defaults, kwargs)
+    return defaults
+
+def _merge_defaults(defaults, args):
+    global _default_file
+    if len(args) > 0:
+        def_names = tuple(defaults.keys())
+        new_defs = args
+        for n in def_names:
+            if n in new_defs:
+                x = 0
+            else:
+                new_defs[n] = defaults.get(n)
+        defaults = new_defs 
+    open(_default_file, "w").write(dumps(defaults))   
+    return defaults
 
 def chat(prompt, stream = True, preview = False, **kwargs):
     global _history
