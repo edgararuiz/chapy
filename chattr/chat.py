@@ -61,15 +61,6 @@ def chat(prompt, stream = True, preview = False, **kwargs):
     global _history_file
     global _default_file
 
-    hf = kwargs.get("_history_file")
-    if isinstance(hf, str):
-        _history_file = hf
-
-    if path.isfile(_history_file):
-        history = loads(open(_history_file, "r").read())
-    else:
-        history = []
-
     df = kwargs.get("_default_file")
     if isinstance(df, str):
         _default_file = df
@@ -77,17 +68,34 @@ def chat(prompt, stream = True, preview = False, **kwargs):
             defaults = loads(open(_default_file, "r").read())
     else:
         defaults = _defaults()
+
+    include_history = defaults.get("include_history")
+
+    if include_history:
+        hf = kwargs.get("_history_file")
+        if isinstance(hf, str):
+            _history_file = hf
+
+        if path.isfile(_history_file):
+            history = loads(open(_history_file, "r").read())
+        else:
+            history = []
+
+        history.append(dict(role = "user", content = prompt))  
+        prompt = dumps(history)
+
+            
     provider = defaults.get("provider")
     response = ""
-    history.append(dict(role = "user", content = prompt))  
     if(provider == "Ollama"):        
-        response = _ch_submit_ollama(dumps(history), stream, preview, defaults)
+        response = _ch_submit_ollama(prompt, stream, preview, defaults)
     else:
         return
     if response == "":
         return      
-    history.append(dict(role = "assistant", content = response))
-    open(_history_file, "w").write(dumps(history))
+    if include_history:
+        history.append(dict(role = "assistant", content = response))
+        open(_history_file, "w").write(dumps(history))
 
 def app(host = '127.0.0.1', port = 'auto'):
     global _history_file

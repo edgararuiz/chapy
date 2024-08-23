@@ -3,7 +3,7 @@ default:
   model: llama3.1
   path: http://localhost:11434/
   label:  Ollama
-  include_history: FALSE
+  include_history: TRUE
   max_data_files: 0
   max_data_frames: 0
   include_doc_contents: FALSE
