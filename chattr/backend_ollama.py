@@ -1,4 +1,4 @@
-from .utils import _ch_open_config
+from chattr.utils import _ch_open_config
 from requests import post, get
 from json import dumps, loads
 from sys import stdout

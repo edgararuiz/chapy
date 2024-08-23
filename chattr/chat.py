@@ -1,5 +1,5 @@
-from .backend_ollama import _ch_submit_ollama, _ch_models_ollama, _ch_available_ollama
-from .utils import _ch_open_config
+from chattr.backend_ollama import _ch_submit_ollama, _ch_models_ollama, _ch_available_ollama
+from chattr.utils import _ch_open_config
 from os import path
 from time import sleep
 from socket import socket
