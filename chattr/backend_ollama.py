@@ -4,39 +4,30 @@ from json import dumps, loads
 from sys import stdout
 import socket
 
-def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
+
+def _ch_submit_ollama(prompt, stream=True, preview=False, defaults={}):
     messages = []
-    messages.append(dict(
-        role =  "system", 
-        content = defaults.get("system_msg")
-        ))
+    messages.append(dict(role="system", content=defaults.get("system_msg")))
 
     try:
         prompt = loads(prompt)
         messages = messages + prompt
     except ValueError:
-        messages.append(dict(
-            role =  "user", 
-            content = prompt
-        ))
+        messages.append(dict(role="user", content=prompt))
 
-    data = dict(
-        model = defaults.get("model"),
-        messages =  messages, 
-        stream = stream
-    )
+    data = dict(model=defaults.get("model"), messages=messages, stream=stream)
 
-    if preview:    
+    if preview:
         print(data)
         return ""
 
     response = post(
-        url = defaults.get("path") + "api/chat", 
-        data = dumps(data),
-        headers = {"Content-Type": "application/json"}, 
-        stream = stream
-        )
-    
+        url=defaults.get("path") + "api/chat",
+        data=dumps(data),
+        headers={"Content-Type": "application/json"},
+        stream=stream,
+    )
+
     out = ""
     for line in response.iter_lines():
         body = loads(line)
@@ -47,9 +38,10 @@ def _ch_submit_ollama(prompt, stream = True, preview = False, defaults = {}):
 
     return out
 
+
 def _ch_models_ollama():
     defaults = _ch_open_config("ollama").get("default")
-    response = get(url = defaults.get("path") + "api/tags")
+    response = get(url=defaults.get("path") + "api/tags")
     tags = []
     for tag in response.iter_lines():
         tags.append(loads(tag))
@@ -58,16 +50,18 @@ def _ch_models_ollama():
     out = []
     for model in models:
         m = dict(
-            provider = "ollama",
-            model = model.get("model"),
-            label = 'Ollama - ' + model.get("name")
-            )
+            provider="ollama",
+            model=model.get("model"),
+            label="Ollama - " + model.get("name"),
+        )
         out.append(m)
     return out
+
 
 def _ch_available_ollama():
     defaults = _ch_open_config("ollama").get("default")
     import socket
+
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     path = defaults.get("path")
     ps = path.split(":")
