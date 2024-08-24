@@ -62,6 +62,32 @@ def _merge_defaults(defaults, args):
 
 
 def chat(prompt, stream=True, preview=False, **kwargs):
+    """Interact with the LLM via the console
+    ------
+    
+    Details
+    ------
+    Easily interact with an LLM by simply passing a prompt as an argument
+
+    Parameters
+    ------
+    - prompt
+        + The request to be sent to the model.
+    - stream
+        + Process the response from the LLM as a stream of text instead of waiting for the entire response
+        to complete before displaying. Defaults to True.
+    - preview
+        + If True, returns what it will be sent to the LLM. Defaults to False.
+    - **kwargs
+        + Arguments to override the defaults. Such as the 'model', amd 'system_msg'
+
+    Examples
+    ------
+    ```python
+    import chattr
+    chattr.chat("How do I create a plot?")
+    ```
+    """    
     global _history_file
     global _default_file
 
