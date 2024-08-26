@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "reference/chat.html",
+    "href": "reference/chat.html",
+    "title": "chat",
+    "section": "",
+    "text": "chat(prompt, stream=True, preview=False, **kwargs)\nInteract with the LLM via the console\n\n\nEasily interact with an LLM by simply passing a prompt as an argument\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprompt\n\nThe request to be sent to the model.\nrequired\n\n\nstream\n\nProcess the response from the LLM as a stream of text instead of waiting for the entire response to complete before displaying. Defaults to True.\nTrue\n\n\npreview\n\nIf True, returns what it will be sent to the LLM. Defaults to False.\nFalse\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chattr\nchattr.chat(\"How do I create a plot?\")"
+  },
+  {
+    "objectID": "reference/chat.html#details",
+    "href": "reference/chat.html#details",
+    "title": "chat",
+    "section": "",
+    "text": "Easily interact with an LLM by simply passing a prompt as an argument"
+  },
+  {
+    "objectID": "reference/chat.html#parameters",
+    "href": "reference/chat.html#parameters",
+    "title": "chat",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nprompt\n\nThe request to be sent to the model.\nrequired\n\n\nstream\n\nProcess the response from the LLM as a stream of text instead of waiting for the entire response to complete before displaying. Defaults to True.\nTrue\n\n\npreview\n\nIf True, returns what it will be sent to the LLM. Defaults to False.\nFalse\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}"
+  },
+  {
+    "objectID": "reference/chat.html#examples",
+    "href": "reference/chat.html#examples",
+    "title": "chat",
+    "section": "",
+    "text": "import chattr\nchattr.chat(\"How do I create a plot?\")"
+  },
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "Function reference",
+    "section": "",
+    "text": "chat\nInteract with the LLM via the console\n\n\napp\n\n\n\n\n\n\n\n\n\n\nuse\n\n\n\n_defaults"
+  },
+  {
+    "objectID": "reference/index.html#main-functions",
+    "href": "reference/index.html#main-functions",
+    "title": "Function reference",
+    "section": "",
+    "text": "chat\nInteract with the LLM via the console\n\n\napp"
+  },
+  {
+    "objectID": "reference/index.html#utils",
+    "href": "reference/index.html#utils",
+    "title": "Function reference",
+    "section": "",
+    "text": "use\n\n\n\n_defaults"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "chattr (for Python)",
+    "section": "",
+    "text": "To install from Github:\npip install git+https://github.com/edgararuiz/chattr-python\n\n\n\nThis application has been developed and tested in the Positron IDE.\n\n\nTo use in the console, use the chat() function:\nimport chattr\nchattr.chat(\"What package should I use to read parquet files?\")\n\n\n\nAs with it’s sister R package, chattr comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode Shiny extension installed.\nTo run the app use:\nimport chattr\nchattr.app()\n\n\n\n\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "chattr (for Python)",
+    "section": "",
+    "text": "To install from Github:\npip install git+https://github.com/edgararuiz/chattr-python"
+  },
+  {
+    "objectID": "index.html#usage-from-positron",
+    "href": "index.html#usage-from-positron",
+    "title": "chattr (for Python)",
+    "section": "",
+    "text": "This application has been developed and tested in the Positron IDE.\n\n\nTo use in the console, use the chat() function:\nimport chattr\nchattr.chat(\"What package should I use to read parquet files?\")\n\n\n\nAs with it’s sister R package, chattr comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode Shiny extension installed.\nTo run the app use:\nimport chattr\nchattr.app()"
+  },
+  {
+    "objectID": "index.html#limitations",
+    "href": "index.html#limitations",
+    "title": "chattr (for Python)",
+    "section": "",
+    "text": "This package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging."
+  },
+  {
+    "objectID": "reference/use.html",
+    "href": "reference/use.html",
+    "title": "use",
+    "section": "",
+    "text": "use\nuse(provider='', **kwargs)"
+  },
+  {
+    "objectID": "reference/app.html",
+    "href": "reference/app.html",
+    "title": "app",
+    "section": "",
+    "text": "app\napp(host='127.0.0.1', port='auto')"
+  }
+]

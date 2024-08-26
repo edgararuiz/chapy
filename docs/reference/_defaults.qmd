@@ -1,4 +1,0 @@
-# _defaults { #chattr._defaults }
-
-`_defaults(**kwargs)`
-

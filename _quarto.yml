@@ -1,12 +1,13 @@
 project:
   type: website
+  output-dir: docs
 
 format:
   html:
     toc: true
     code-copy: true
     code-overflow: wrap
-    
+
 website:
   title: chattr
   navbar:
@@ -23,7 +24,7 @@ quartodoc:
   package: chattr
   options: null
   style: pkgdown
-  dir: 'docs/reference'
+  dir: 'reference'
   dynamic: true
   sections:
     - title: Main functions
