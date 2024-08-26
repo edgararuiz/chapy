@@ -130,6 +130,34 @@ def chat(prompt, stream=True, preview=False, **kwargs):
 
 
 def app(host="127.0.0.1", port="auto"):
+    """Open the Shiny chat app
+
+    Details
+    ------
+    Easily interact with an LLM by simply opening the Shiny app and
+    using with the chat interface. If the app was closed, and 
+    reopened, `chattr` will reuse the exact same host and port as
+    the first time it was opened. 
+
+    Restarting Python will automatically close the app.
+
+    Parameters
+    ------
+    host 
+        The host of the Shiny app
+    port
+        The port to open the Shiny app in. Defaults to 'auto'. If left
+        'auto', the `chattr` will look for an open port to use
+    
+    Examples
+    ------
+
+    ```python
+    import chattr
+    chattr.app()
+    ```
+
+    """
     global _history_file
     global _default_file
     global _shiny_url

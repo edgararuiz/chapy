@@ -32,14 +32,14 @@
     "href": "reference/index.html",
     "title": "Function reference",
     "section": "",
-    "text": "chat\nInteract with the LLM via the console\n\n\napp\n\n\n\n\n\n\n\n\n\n\nuse\n\n\n\n_defaults"
+    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app\n\n\n\n\n\n\n\n\n\nuse\n\n\n\n_defaults"
   },
   {
     "objectID": "reference/index.html#main-functions",
     "href": "reference/index.html#main-functions",
     "title": "Function reference",
     "section": "",
-    "text": "chat\nInteract with the LLM via the console\n\n\napp"
+    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app"
   },
   {
     "objectID": "reference/index.html#utils",
@@ -88,6 +88,27 @@
     "href": "reference/app.html",
     "title": "app",
     "section": "",
-    "text": "app\napp(host='127.0.0.1', port='auto')"
+    "text": "app(host='127.0.0.1', port='auto')\nOpen the Shiny chat app\n\n\nEasily interact with an LLM by simply opening the Shiny app and using with the chat interface. If the app was closed, and reopened, chattr will reuse the exact same host and port as the first time it was opened.\nRestarting Python will automatically close the app.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhost\n\nThe host of the Shiny app\n'127.0.0.1'\n\n\nport\n\nThe port to open the Shiny app in. Defaults to ‘auto’. If left ‘auto’, the chattr will look for an open port to use\n'auto'\n\n\n\n\n\n\nimport chattr\nchattr.app()"
+  },
+  {
+    "objectID": "reference/app.html#details",
+    "href": "reference/app.html#details",
+    "title": "app",
+    "section": "",
+    "text": "Easily interact with an LLM by simply opening the Shiny app and using with the chat interface. If the app was closed, and reopened, chattr will reuse the exact same host and port as the first time it was opened.\nRestarting Python will automatically close the app."
+  },
+  {
+    "objectID": "reference/app.html#parameters",
+    "href": "reference/app.html#parameters",
+    "title": "app",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nhost\n\nThe host of the Shiny app\n'127.0.0.1'\n\n\nport\n\nThe port to open the Shiny app in. Defaults to ‘auto’. If left ‘auto’, the chattr will look for an open port to use\n'auto'"
+  },
+  {
+    "objectID": "reference/app.html#examples",
+    "href": "reference/app.html#examples",
+    "title": "app",
+    "section": "",
+    "text": "import chattr\nchattr.app()"
   }
 ]
