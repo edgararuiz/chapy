@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: docs
+
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+
+website:
+  title: chattr
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: reference/index.qmd
+        text: Reference
+    right:
+      - icon: github
+        href: https://github.com/edgararuiz/chattr-python
+
+quartodoc:
+  package: chattr
+  options: null
+  style: pkgdown
+  dir: 'reference'
+  dynamic: true
+  sections:
+    - title: Main functions
+      contents: 
+        - chat
+        - app
+    - title: Utils
+      contents:
+        - use
+        - _defaults

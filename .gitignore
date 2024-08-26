@@ -163,3 +163,8 @@ cython_debug/
 
 README.html
 README_files/
+
+/.quarto/
+
+/reference/
+/_site/
