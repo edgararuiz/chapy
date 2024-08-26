@@ -4,7 +4,7 @@
 
 | | |
 | --- | --- |
-| [chat](chat.qmd#chattr.chat) |  |
+| [chat](chat.qmd#chattr.chat) | Interact with the LLM via the console |
 | [app](app.qmd#chattr.app) |  |
 
 ## Utils

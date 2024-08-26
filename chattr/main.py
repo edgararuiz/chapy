@@ -63,7 +63,6 @@ def _merge_defaults(defaults, args):
 
 def chat(prompt, stream=True, preview=False, **kwargs):
     """Interact with the LLM via the console
-    ------
     
     Details
     ------

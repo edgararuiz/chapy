@@ -2,9 +2,7 @@
 
 `chat(prompt, stream=True, preview=False, **kwargs)`
 
-## Interact With The Llm Via The Console
-
-
+Interact with the LLM via the console
 
 ## Details
 

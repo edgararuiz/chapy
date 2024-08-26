@@ -6,7 +6,7 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
-
+    
 website:
   title: chattr
   navbar:
@@ -18,11 +18,13 @@ website:
     right:
       - icon: github
         href: https://github.com/edgararuiz/chattr-python
+
 quartodoc:
   package: chattr
   options: null
   style: pkgdown
   dir: 'docs/reference'
+  dynamic: true
   sections:
     - title: Main functions
       contents: 

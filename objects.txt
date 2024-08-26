@@ -1,0 +1,12 @@
+# Sphinx inventory version 2
+# Project: chattr
+# Version: 0.0.9999
+# The remainder of this file is compressed using zlib.
+chattr.chat py:function 1 docs/reference/chat.html#chattr.chat -
+chattr.main.chat py:function 1 docs/reference/chat.html#chattr.chat chattr.chat
+chattr.app py:function 1 docs/reference/app.html#chattr.app -
+chattr.main.app py:function 1 docs/reference/app.html#chattr.app chattr.app
+chattr.use py:function 1 docs/reference/use.html#chattr.use -
+chattr.main.use py:function 1 docs/reference/use.html#chattr.use chattr.use
+chattr._defaults py:function 1 docs/reference/_defaults.html#chattr._defaults -
+chattr.main._defaults py:function 1 docs/reference/_defaults.html#chattr._defaults chattr._defaults
