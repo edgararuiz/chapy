@@ -1,0 +1,13 @@
+project:
+  type: website
+
+quartodoc:
+  sections:
+  - title: chattr
+    desc: ''
+    contents:
+    - name: use
+    - name: chat
+      include_imports: true
+  package: chattr
+  options: null

@@ -71,15 +71,18 @@ def chat(prompt, stream=True, preview=False, **kwargs):
 
     Parameters
     ------
-    - prompt
-        + The request to be sent to the model.
-    - stream
-        + Process the response from the LLM as a stream of text instead of waiting for the entire response
-        to complete before displaying. Defaults to True.
-    - preview
-        + If True, returns what it will be sent to the LLM. Defaults to False.
-    - **kwargs
-        + Arguments to override the defaults. Such as the 'model', amd 'system_msg'
+    prompt 
+        The request to be sent to the model.
+
+    stream
+        Process the response from the LLM as a stream of text instead of waiting  
+        for the entire response to complete before displaying. Defaults to True.
+    
+    preview
+        If True, returns what it will be sent to the LLM. Defaults to False.
+    
+    **kwargs 
+        Arguments to override the defaults. Such as the 'model', amd 'system_msg'
 
     Examples
     ------
