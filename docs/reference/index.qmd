@@ -1,0 +1,15 @@
+# Function reference {.doc .doc-index}
+
+## Main functions
+
+| | |
+| --- | --- |
+| [chat](chat.qmd#chattr.chat) |  |
+| [app](app.qmd#chattr.app) |  |
+
+## Utils
+
+| | |
+| --- | --- |
+| [use](use.qmd#chattr.use) |  |
+| [_defaults](_defaults.qmd#chattr._defaults) |  |

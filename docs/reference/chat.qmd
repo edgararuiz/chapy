@@ -1,0 +1,27 @@
+# chat { #chattr.chat }
+
+`chat(prompt, stream=True, preview=False, **kwargs)`
+
+## Interact With The Llm Via The Console
+
+
+
+## Details
+
+Easily interact with an LLM by simply passing a prompt as an argument
+
+## Parameters
+
+| Name       | Type   | Description                                                                                                                                         | Default    |
+|------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| `prompt`   |        | The request to be sent to the model.                                                                                                                | _required_ |
+| `stream`   |        | Process the response from the LLM as a stream of text instead of waiting   for the entire response to complete before displaying. Defaults to True. | `True`     |
+| `preview`  |        | If True, returns what it will be sent to the LLM. Defaults to False.                                                                                | `False`    |
+| `**kwargs` |        | Arguments to override the defaults. Such as the 'model', amd 'system_msg'                                                                           | `{}`       |
+
+## Examples
+
+```python
+import chattr
+chattr.chat("How do I create a plot?")
+```

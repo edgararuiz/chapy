@@ -1,6 +1,0 @@
-project:
-  type: website
-
-quartodoc:
-  package: chattr
-  options: null

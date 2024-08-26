@@ -3,3 +3,14 @@ project:
 
 quartodoc:
   package: chattr
+  options: null
+  dir: 'docs/reference'
+  sections:
+    - title: Main functions
+      contents: 
+        - chat
+        - app
+    - title: Utils
+      contents:
+        - use
+        - _defaults
