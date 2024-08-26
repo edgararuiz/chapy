@@ -34,4 +34,4 @@ quartodoc:
     - title: Utils
       contents:
         - use
-        - _defaults
+        - session_defaults

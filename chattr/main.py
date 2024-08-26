@@ -65,7 +65,32 @@ def use(provider="", **kwargs):
     open(_default_file, "w").write(dumps(defaults))
 
 
-def _defaults(**kwargs):
+def session_defaults(**kwargs):    
+    """View and set defaults for the session with LLM
+
+    Details
+    ------
+    
+    Change or add any default to use as options for your interaction with the
+    LLM. The defaults will apply both in the console interaction (`chattr.chat()`),
+    and the Shiny app interaction (`chattr.app()`)
+
+    Parameters
+    ------
+    **kwargs 
+        Arguments to override the defaults. Such as the 'model', amd 'system_msg'
+
+    Examples
+    ------
+    ```python
+    import chattr
+    chattr.defaults()
+
+    # Override the model to use
+    chattr.defaults(model = "llama2")
+    ```
+
+    """
     global _default_file
     if not path.isfile(_default_file):
         use()
@@ -126,7 +151,7 @@ def chat(prompt, stream=True, preview=False, **kwargs):
         if path.isfile(_default_file):
             defaults = loads(open(_default_file, "r").read())
     else:
-        defaults = _defaults()
+        defaults = session_defaults()
 
     include_history = defaults.get("include_history")
 
@@ -193,9 +218,9 @@ def app(host="127.0.0.1", port="auto"):
             sock = socket()
             sock.bind(("", 0))
             port = sock.getsockname()[1]
-        app_file = path.join(path.dirname(__file__), "app.py")
+        app_file = path.join(path.dirname(__file__), "shiny.py")
         py_script = open(app_file, "r").read()
-        defaults = _defaults()
+        defaults = session_defaults()
         py_script = (
             ""
             + "_history_file = '"

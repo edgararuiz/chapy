@@ -32,7 +32,7 @@
     "href": "reference/index.html",
     "title": "Function reference",
     "section": "",
-    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app\n\n\n\n\n\n\n\n\n\nuse\nSpecify what LLM you will use\n\n\n_defaults"
+    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app\n\n\n\n\n\n\n\n\n\nuse\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM"
   },
   {
     "objectID": "reference/index.html#main-functions",
@@ -46,7 +46,7 @@
     "href": "reference/index.html#utils",
     "title": "Function reference",
     "section": "",
-    "text": "use\nSpecify what LLM you will use\n\n\n_defaults"
+    "text": "use\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM"
   },
   {
     "objectID": "index.html",
@@ -81,7 +81,7 @@
     "href": "reference/use.html",
     "title": "use",
     "section": "",
-    "text": "use(provider='', **kwargs)\nSpecify what LLM you will use\n\n\nIndicate which LLM and model you would like to use during your Python session. At this time only Ollama models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprovider\n\nName of the LLM provider you wish to use. Currently, only ‘olama’ is supported\n''\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chattr\nchattr.use(\"ollama\")"
+    "text": "use(provider='', **kwargs)\nSpecify which LLM you will use\n\n\nIndicate which LLM and model you would like to use during your Python session. At this time only Ollama models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprovider\n\nName of the LLM provider you wish to use. Currently, only ‘olama’ is supported\n''\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chattr\nchattr.use(\"ollama\")"
   },
   {
     "objectID": "reference/app.html",
@@ -131,5 +131,33 @@
     "title": "use",
     "section": "",
     "text": "import chattr\nchattr.use(\"ollama\")"
+  },
+  {
+    "objectID": "reference/session_defaults.html",
+    "href": "reference/session_defaults.html",
+    "title": "session_defaults",
+    "section": "",
+    "text": "session_defaults(**kwargs)\nView and set defaults for the session with LLM\n\n\nChange or add any default to use as options for your interaction with the LLM. The defaults will apply both in the console interaction (chattr.chat()), and the Shiny app interaction (chattr.app())\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chattr\nchattr.defaults()\n\n# Override the model to use\nchattr.defaults(model = \"llama2\")"
+  },
+  {
+    "objectID": "reference/session_defaults.html#details",
+    "href": "reference/session_defaults.html#details",
+    "title": "session_defaults",
+    "section": "",
+    "text": "Change or add any default to use as options for your interaction with the LLM. The defaults will apply both in the console interaction (chattr.chat()), and the Shiny app interaction (chattr.app())"
+  },
+  {
+    "objectID": "reference/session_defaults.html#parameters",
+    "href": "reference/session_defaults.html#parameters",
+    "title": "session_defaults",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}"
+  },
+  {
+    "objectID": "reference/session_defaults.html#examples",
+    "href": "reference/session_defaults.html#examples",
+    "title": "session_defaults",
+    "section": "",
+    "text": "import chattr\nchattr.defaults()\n\n# Override the model to use\nchattr.defaults(model = \"llama2\")"
   }
 ]
