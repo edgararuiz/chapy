@@ -1,7 +1,14 @@
 project:
   type: website
 
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+
 website:
+  title: chattr
   navbar:
     left:
       - href: index.qmd
@@ -14,6 +21,7 @@ website:
 quartodoc:
   package: chattr
   options: null
+  style: pkgdown
   dir: 'docs/reference'
   sections:
     - title: Main functions
