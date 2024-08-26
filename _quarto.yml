@@ -1,6 +1,16 @@
 project:
   type: website
 
+website:
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: reference/index.qmd
+        text: Reference
+    right:
+      - icon: github
+        href: https://github.com/edgararuiz/chattr-python
 quartodoc:
   package: chattr
   options: null
