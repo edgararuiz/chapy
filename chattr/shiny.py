@@ -10,36 +10,8 @@ if "_history_file" not in locals():
 if "_default_file" not in locals():
     _default_file = NamedTemporaryFile().name
 
-
-def app_temp_script(history, default):
-    code = (
-        ""
-        + "import chattr"
-        + "\n"
-        + "import argparse"
-        + "\n"
-        + "parser = argparse.ArgumentParser()"
-        + "\n"
-        + "parser.add_argument('--prompt', default = '')"
-        + "\n"
-        + "parser.add_argument('--stream', type = bool, default = True)"
-        + "\n"
-        + "args = parser.parse_args()"
-        + "\n"
-        + "if args.prompt != '':"
-        + "\n"
-        + "    chattr.chat(args.prompt, args.stream,"
-        + " _history_file='"
-        + history
-        + "',"
-        + " _default_file='"
-        + default
-        + "')"
-    )
-    temp_file = NamedTemporaryFile().name
-    open(temp_file, "w").write(code)
-    return temp_file
-
+if "_pkg_location" not in locals():
+    _pkg_location = path.dirname(__file__)
 
 def app_add_user(x):
     ui.insert_ui(
@@ -52,7 +24,6 @@ def app_add_user(x):
         where="afterEnd",
     )
 
-
 def app_add_assistant(x):
     ui.insert_ui(
         ui.layout_columns(
@@ -63,7 +34,6 @@ def app_add_assistant(x):
         selector="#main",
         where="afterEnd",
     )
-
 
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
@@ -85,9 +55,6 @@ app_ui = ui.page_fluid(
     ui.output_ui(id="main"),
 )
 
-temp_script = app_temp_script(_history_file, _default_file)
-
-
 def server(input: Inputs, output: Outputs, session: Session):
     response = ""
     proc = ""
@@ -107,7 +74,14 @@ def server(input: Inputs, output: Outputs, session: Session):
     def _():
         nonlocal proc
         if input.prompt() != "":
-            args = ["python", temp_script, f"--prompt=" + input.prompt() + ""]
+            script_path = path.join(_pkg_location, "cli.py")
+            args = [
+                "python", 
+                script_path, 
+                f"--prompt={input.prompt()}",
+                f"--history={_history_file}",
+                f"--default={_default_file}",
+                ]
             proc = Popen(args, stdout=PIPE)
             ui.update_text("prompt", value="")
             app_add_user(input.prompt())

@@ -229,7 +229,10 @@ def app(host="127.0.0.1", port="auto"):
             + "_default_file = '"
             + _default_file
             + "'\n"
-            + py_script
+            + "_pkg_location = '"
+            + path.dirname(__file__)
+            + "'\n"            
+            + py_script 
         )
         temp_script = NamedTemporaryFile()
         temp_script = str(temp_script.name) + ".py"
