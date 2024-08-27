@@ -222,7 +222,7 @@ def app(host="127.0.0.1", port="auto"):
             sock = socket()
             sock.bind(("", 0))
             port = sock.getsockname()[1]
-        app_file = path.join(path.dirname(__file__), "shiny.py")
+        app_file = path.join(path.dirname(__file__), "shiny_app.py")
         py_script = open(app_file, "r").read()
         defaults = session_defaults()
         py_script = (
