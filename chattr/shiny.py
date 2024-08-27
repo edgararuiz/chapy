@@ -13,6 +13,7 @@ if "_default_file" not in locals():
 if "_pkg_location" not in locals():
     _pkg_location = path.dirname(__file__)
 
+
 def app_add_user(x):
     ui.insert_ui(
         ui.layout_columns(
@@ -24,6 +25,7 @@ def app_add_user(x):
         where="afterEnd",
     )
 
+
 def app_add_assistant(x):
     ui.insert_ui(
         ui.layout_columns(
@@ -34,6 +36,7 @@ def app_add_assistant(x):
         selector="#main",
         where="afterEnd",
     )
+
 
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
@@ -54,6 +57,7 @@ app_ui = ui.page_fluid(
     ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
     ui.output_ui(id="main"),
 )
+
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ""
@@ -76,12 +80,12 @@ def server(input: Inputs, output: Outputs, session: Session):
         if input.prompt() != "":
             script_path = path.join(_pkg_location, "cli.py")
             args = [
-                "python", 
-                script_path, 
+                "python",
+                script_path,
                 f"--prompt={input.prompt()}",
                 f"--history={_history_file}",
                 f"--default={_default_file}",
-                ]
+            ]
             proc = Popen(args, stdout=PIPE)
             ui.update_text("prompt", value="")
             app_add_user(input.prompt())
