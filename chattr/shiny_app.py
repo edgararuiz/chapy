@@ -44,21 +44,23 @@ app_ui = ui.page_fluid(
     ui.tags.style(".bslib-grid-item { padding:1px; margin:1px;}"),
     ui.tags.style(".col-sm-11 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
     ui.tags.style(".col-sm-1 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
-    ui.row(
-        ui.column(11,
-            ui.input_text_area("prompt", "", width="100%", resize=False)
-        ),
-        ui.column(1,
-        ui.div(
-            ui.input_task_button(
-                "submit", "Submit", style="font-size:65%; padding:4px; margin:2px"
+    #ui.tags.style(".container-fluid { display: grid; grid-template-rows: 1fr auto; }"),
+    ui.panel_fixed(
+        ui.row(
+            ui.column(11,
+                ui.input_text_area("prompt", "", width="100%", resize=False)
             ),
+            ui.column(1,
             ui.div(
-                ui.input_dark_mode(id="mode"),
-            )            
-        )
-        )
-    ),
+                ui.input_task_button(
+                    "submit", "Submit", style="font-size:65%; padding:4px; margin:2px"
+                ),
+                ui.div(
+                    ui.input_dark_mode(id="mode"),
+                )            
+            )
+        )), width="98%;"
+        ), 
     ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
     ui.output_ui(id="main"),
 )
