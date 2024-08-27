@@ -59,10 +59,12 @@ app_ui = ui.page_fluid(
                     ui.input_dark_mode(id="mode"),
                 )            
             )
-        )), width="98%;"
-        ), 
-    ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
-    ui.output_ui(id="main"),
+        )), width="98%;"), 
+    ui.panel_absolute(
+        ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
+        ui.output_ui(id="main"), 
+        top = "60px"
+        ),
 )
 
 
