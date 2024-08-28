@@ -29,7 +29,7 @@ def app_add_user(x):
 def app_add_assistant(x):
     ui.insert_ui(
         ui.layout_columns(
-            ui.card(ui.markdown(x), style="padding:0; margin:0; border-color: #ccc;"),
+            ui.card(parse_response(x), style="padding:0; margin:0; border-color: #ccc;"),
             ui.p(),
             col_widths=(11, 1),
         ),
@@ -63,10 +63,39 @@ app_ui = ui.page_fluid(
     ui.panel_absolute(
         ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
         ui.output_ui(id="main"), 
-        top = "60px"
+        top = "60px", 
+        width= "98%"
         ),
 )
 
+def parse_response(x):
+    x_split = x.split("```")
+    out = ""
+    ret = ""
+    is_code = False
+    for i in x_split:
+        if is_code:
+            out = out + "```"
+        out = out + i
+        if is_code:
+            out = out + "```"
+            rw =  ui.row(
+                ui.input_task_button("copy", "Copy"),
+                ui.markdown(out)                
+            )
+        else:
+            rw =  ui.row(
+                ui.markdown(out)                
+            )            
+        if is_code == False:
+            is_code = True
+        else:
+            is_code = False
+        if ret == "":
+            ret = rw
+        else:
+            ret = ret, rw
+    return(ret)
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ""
