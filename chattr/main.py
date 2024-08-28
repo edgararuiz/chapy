@@ -1,4 +1,8 @@
-from chattr.backend_ollama import _ch_submit_ollama, _ch_models_ollama, _ch_available_ollama
+from chattr.backend_ollama import (
+    _ch_submit_ollama,
+    _ch_models_ollama,
+    _ch_available_ollama,
+)
 from chattr.utils import _ch_open_config
 from os import path
 from time import sleep
@@ -14,12 +18,12 @@ _shiny_url = ""
 
 
 def use(provider="", **kwargs):
-    """Specify which LLM you will use 
+    """Specify which LLM you will use
 
     Details
     ------
     Indicate which LLM and model you would like to use during your Python session.
-    At this time only Ollama models are supported. 
+    At this time only Ollama models are supported.
 
     Passing no `provider` will automatically prompt you to select a provider and a
     model. For Ollama, the models will be those currently installed in your
@@ -28,9 +32,9 @@ def use(provider="", **kwargs):
     Parameters
     ------
     provider
-        Name of the LLM provider you wish to use. Currently, only 'olama' is 
+        Name of the LLM provider you wish to use. Currently, only 'olama' is
         supported
-    **kwargs 
+    **kwargs
         Arguments to override the defaults. Such as the 'model', amd 'system_msg'
 
     Examples
@@ -65,19 +69,19 @@ def use(provider="", **kwargs):
     open(_default_file, "w").write(dumps(defaults))
 
 
-def session_defaults(**kwargs):    
+def session_defaults(**kwargs):
     """View and set defaults for the session with LLM
 
     Details
     ------
-    
+
     Change or add any default to use as options for your interaction with the
     LLM. The defaults will apply both in the console interaction (`chattr.chat()`),
     and the Shiny app interaction (`chattr.app()`)
 
     Parameters
     ------
-    **kwargs 
+    **kwargs
         Arguments to override the defaults. Such as the 'model', amd 'system_msg'
 
     Examples
@@ -115,24 +119,24 @@ def _merge_defaults(defaults, args):
 
 def chat(prompt, stream=True, preview=False, **kwargs):
     """Interact with the LLM via the console
-    
+
     Details
     ------
     Easily interact with an LLM by simply passing a prompt as an argument
 
     Parameters
     ------
-    prompt 
+    prompt
         The request to be sent to the model.
 
     stream
-        Process the response from the LLM as a stream of text instead of waiting  
+        Process the response from the LLM as a stream of text instead of waiting
         for the entire response to complete before displaying. Defaults to True.
-    
+
     preview
         If True, returns what it will be sent to the LLM. Defaults to False.
-    
-    **kwargs 
+
+    **kwargs
         Arguments to override the defaults. Such as the 'model', amd 'system_msg'
 
     Examples
@@ -141,7 +145,7 @@ def chat(prompt, stream=True, preview=False, **kwargs):
     import chattr
     chattr.chat("How do I create a plot?")
     ```
-    """    
+    """
     global _history_file
     global _default_file
 
@@ -187,20 +191,20 @@ def app(host="127.0.0.1", port="auto"):
     Details
     ------
     Easily interact with an LLM by simply opening the Shiny app and
-    using with the chat interface. If the app was closed, and 
+    using with the chat interface. If the app was closed, and
     reopened, `chattr` will reuse the exact same host and port as
-    the first time it was opened. 
+    the first time it was opened.
 
     Restarting Python will automatically close the app.
 
     Parameters
     ------
-    host 
+    host
         The host of the Shiny app
     port
         The port to open the Shiny app in. Defaults to 'auto'. If left
         'auto', the `chattr` will look for an open port to use
-    
+
     Examples
     ------
 
@@ -218,21 +222,14 @@ def app(host="127.0.0.1", port="auto"):
             sock = socket()
             sock.bind(("", 0))
             port = sock.getsockname()[1]
-        app_file = path.join(path.dirname(__file__), "shiny.py")
+        app_file = path.join(path.dirname(__file__), "shiny_app.py")
         py_script = open(app_file, "r").read()
         defaults = session_defaults()
         py_script = (
-            ""
-            + "_history_file = '"
-            + _history_file
-            + "'\n"
-            + "_default_file = '"
-            + _default_file
-            + "'\n"
-            + "_pkg_location = '"
-            + path.dirname(__file__)
-            + "'\n"            
-            + py_script 
+            f"_history_file='{_history_file}'\n" +
+            f"_default_file='{_default_file}'\n" +
+            f"_pkg_location='{path.dirname(__file__)}'\n" +
+            py_script
         )
         temp_script = NamedTemporaryFile()
         temp_script = str(temp_script.name) + ".py"
