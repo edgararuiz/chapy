@@ -32,45 +32,54 @@ app_ui = ui.page_fluid(
     ui.panel_absolute(
         ui.div(
             ui.output_ui("value").add_style("margin-right: 40px; font-size:80%;"),
-            ui.output_ui(id="main")
+            ui.output_ui(id="main"),
         ),
         top="80px",
         left="0px",
-        width="96%"
+        width="96%",
     ),
     ui.panel_fixed(
         ui.row(
-            ui.row(ui.input_text_area("prompt", "", width="100%", resize=False, autoresize=False)),
+            ui.row(
+                ui.input_text_area(
+                    "prompt", "", width="100%", resize=False, autoresize=False
+                )
+            ),
             ui.row(
                 ui.input_task_button(
                     "submit",
                     "Submit",
                     style="font-size:65%; padding:4px; margin-left: auto;margin-right: 0; margin-top: 5px; width: 50px;",
                 ),
-                ui.input_dark_mode(id="mode").add_style("margin-top: -25px;")
-            )
-        ).add_style("background-color: #ddd; padding-top: 2px; padding-bottom: 5px; padding-right: 2px; padding-left: 2px;"),
+                ui.input_dark_mode(id="mode").add_style("margin-top: -25px;"),
+            ),
+        ).add_style(
+            "background-color: #ddd; padding-top: 2px; padding-bottom: 5px; padding-right: 2px; padding-left: 2px;"
+        ),
         width="100%",
-        left="0px"
-    )    
+        left="0px",
+    ),
 )
+
 
 def app_add_user(x):
     ui.insert_ui(
         ui.card(
-            ui.markdown(x), 
-            style="background-color: #376CA4; color: white; margin-left: 50px; width: 92%;"
-            ),
+            ui.markdown(x),
+            style="background-color: #376CA4; color: white; margin-left: 50px; width: 92%;",
+        ),
         selector="#main",
-        where="afterEnd"
+        where="afterEnd",
     )
+
 
 def app_add_assistant(x, input):
 
     btn_curr = btn_copy_no
     ui.insert_ui(
         ui.card(
-            parse_response(x), style="padding:0; margin-right: 20px; border-color: #ccc;"
+            parse_response(x),
+            style="padding:0; margin-right: 20px; border-color: #ccc;",
         ),
         selector="#main",
         where="afterEnd",
@@ -78,10 +87,12 @@ def app_add_assistant(x, input):
     if btn_curr != btn_copy_no:
         for btn in range(btn_curr + 1, btn_copy_no + 1):
             btn_id = "copy" + str(btn)
+
             @reactive.effect
             @reactive.event(getattr(input, btn_id))
             def _():
                 pyperclip.copy(btn_copy_txt[btn - 1])
+
 
 def parse_response(x):
     global btn_copy_no
@@ -104,14 +115,17 @@ def parse_response(x):
                 ui.row(
                     ui.input_task_button(
                         btn_id,
-                        "", 
-                        icon= faicons.icon_svg("copy", margin_left=0, margin_right=0, width="15px"),
-                        style="font-size:65%; padding:2px; margin:1px; background-color: #bbb; " + 
-                              "border-color: #ddd; width: 50px; margin-left: auto;margin-right: 0;" +
-                              "margin-bottom: -30px;",
+                        "",
+                        icon=faicons.icon_svg(
+                            "copy", margin_left=0, margin_right=0, width="15px"
                         ),
-                ui.row(ui.markdown(ci)),
-                ))
+                        style="font-size:65%; padding:2px; margin:1px; background-color: #bbb; "
+                        + "border-color: #ddd; width: 50px; margin-left: auto;margin-right: 0;"
+                        + "margin-bottom: -30px;",
+                    ),
+                    ui.row(ui.markdown(ci)),
+                )
+            )
         else:
             ignore_rw = False
             rw = ui.row(ui.markdown(i))
@@ -119,7 +133,7 @@ def parse_response(x):
             is_code = True
         else:
             code = i.split("\n")
-            code = code[1:len(code) + 1]
+            code = code[1 : len(code) + 1]
             code = "\n".join(code)
             btn_copy_txt.append(code)
             is_code = False
@@ -127,6 +141,7 @@ def parse_response(x):
         if i != "":
             ret = ret, rw
     return ret
+
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ""

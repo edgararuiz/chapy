@@ -226,10 +226,10 @@ def app(host="127.0.0.1", port="auto"):
         py_script = open(app_file, "r").read()
         defaults = session_defaults()
         py_script = (
-            f"_history_file='{_history_file}'\n" +
-            f"_default_file='{_default_file}'\n" +
-            f"_pkg_location='{path.dirname(__file__)}'\n" +
-            py_script
+            f"_history_file='{_history_file}'\n"
+            + f"_default_file='{_default_file}'\n"
+            + f"_pkg_location='{path.dirname(__file__)}'\n"
+            + py_script
         )
         temp_script = NamedTemporaryFile()
         temp_script = str(temp_script.name) + ".py"
