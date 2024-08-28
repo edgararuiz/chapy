@@ -71,29 +71,33 @@ app_ui = ui.page_fluid(
 def parse_response(x):
     x_split = x.split("```")
     out = ""
-    ret = ""
+    ret = ()
     is_code = False
+    ignore_rw = False
     for i in x_split:
-        if is_code:
-            out = out + "```"
         out = out + i
         if is_code:
-            out = out + "```"
+            if i == "":
+                ignore_rw = True
+            else:
+                ignore_rw = False
+
+            i = "```" + i + "```"
             rw =  ui.row(
-                ui.input_task_button("copy", "Copy"),
-                ui.markdown(out)                
+                ui.input_task_button("copy", "Copy", style="font-size:65%; padding:4px; margin:2px"),
+                ui.markdown(i)                
             )
         else:
+            ignore_rw = False
             rw =  ui.row(
-                ui.markdown(out)                
+                ui.markdown(i)                
             )            
         if is_code == False:
             is_code = True
         else:
             is_code = False
-        if ret == "":
-            ret = rw
-        else:
+
+        if i != "``````":
             ret = ret, rw
     return(ret)
 
