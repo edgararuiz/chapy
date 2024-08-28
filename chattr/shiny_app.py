@@ -14,6 +14,8 @@ if "_default_file" not in locals():
 if "_pkg_location" not in locals():
     _pkg_location = path.dirname(__file__)
 
+_history_file = "/Users/edgar/Projects/chattr-python/out.out"
+
 btn_copy_no = 0
 btn_copy_txt = []
 
@@ -31,6 +33,8 @@ def app_add_user(x):
 
 
 def app_add_assistant(x, input):
+
+    btn_curr = btn_copy_no
     ui.insert_ui(
         ui.layout_columns(
             ui.card(
@@ -42,12 +46,13 @@ def app_add_assistant(x, input):
         selector="#main",
         where="afterEnd",
     )
-
-    @reactive.effect
-    @reactive.event(getattr(input, "copy1"))
-    def _():
-        pyperclip.copy(btn_copy_txt[0])
-
+    if btn_curr != btn_copy_no:
+        for btn in range(btn_curr + 1, btn_copy_no + 1):
+            btn_id = "copy" + str(btn)
+            @reactive.effect
+            @reactive.event(getattr(input, btn_id))
+            def _():
+                pyperclip.copy(btn_copy_txt[btn - 1])
 
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
@@ -83,7 +88,6 @@ app_ui = ui.page_fluid(
     ),
 )
 
-
 def parse_response(x):
     global btn_copy_no
     x_split = x.split("```")
@@ -100,7 +104,6 @@ def parse_response(x):
                 ignore_rw = False
             btn_copy_no = btn_copy_no + 1
             btn_id = "copy" + str(btn_copy_no)
-            print(btn_id)
             ci = "```" + i + "```"
             rw = ui.div(
                 ui.row(
