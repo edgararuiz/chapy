@@ -4,6 +4,7 @@ from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from json import loads
 from os import path
 import pyperclip
+import faicons
 
 if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name
@@ -17,29 +18,59 @@ if "_pkg_location" not in locals():
 btn_copy_no = 0
 btn_copy_txt = []
 
+app_ui = ui.page_fluid(
+    ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:80%; margin:1px; } "),
+    ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
+    ui.tags.style(".bslib-grid-item { padding:1px; margin:1px;}"),
+    ui.tags.style(".bslib-card { padding:1px; margin:5px;}"),
+    ui.tags.style(".col-sm-11 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
+    ui.tags.style(".col-sm-1 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
+    ui.tags.style("#prompt { font-size:80%; padding: 0; margin: 0;}"),
+    ui.tags.style("#main { font-size:80%; padding: 3px; }"),
+    ui.tags.style(".row { padding:0; margin:0px;}"),
+    ui.tags.style(".shiny-input-container { padding:2px; margin:0px;}"),
+    ui.panel_absolute(
+        ui.div(
+            ui.output_ui("value").add_style("margin-right: 40px; font-size:80%;"),
+            ui.output_ui(id="main")
+        ),
+        top="80px",
+        left="0px",
+        width="96%"
+    ),
+    ui.panel_fixed(
+        ui.row(
+            ui.row(ui.input_text_area("prompt", "", width="100%", resize=False, autoresize=False)),
+            ui.row(
+                ui.input_task_button(
+                    "submit",
+                    "Submit",
+                    style="font-size:65%; padding:4px; margin-left: auto;margin-right: 0; margin-top: 5px; width: 50px;",
+                ),
+                ui.input_dark_mode(id="mode").add_style("margin-top: -25px;")
+            )
+        ).add_style("background-color: #ddd; padding-top: 2px; padding-bottom: 5px; padding-right: 2px; padding-left: 2px;"),
+        width="100%",
+        left="0px"
+    )    
+)
 
 def app_add_user(x):
     ui.insert_ui(
-        ui.layout_columns(
-            ui.p(),
-            ui.card(ui.markdown(x), style="background-color: #376CA4; color: white;"),
-            col_widths=(1, 11),
-        ),
+        ui.card(
+            ui.markdown(x), 
+            style="background-color: #376CA4; color: white; margin-left: 50px; width: 92%;"
+            ),
         selector="#main",
-        where="afterEnd",
+        where="afterEnd"
     )
-
 
 def app_add_assistant(x, input):
 
     btn_curr = btn_copy_no
     ui.insert_ui(
-        ui.layout_columns(
-            ui.card(
-                parse_response(x), style="padding:0; margin:0; border-color: #ccc;"
-            ),
-            ui.p(),
-            col_widths=(11, 1),
+        ui.card(
+            parse_response(x), style="padding:0; margin-right: 20px; border-color: #ccc;"
         ),
         selector="#main",
         where="afterEnd",
@@ -51,41 +82,6 @@ def app_add_assistant(x, input):
             @reactive.event(getattr(input, btn_id))
             def _():
                 pyperclip.copy(btn_copy_txt[btn - 1])
-
-app_ui = ui.page_fluid(
-    ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
-    ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
-    ui.tags.style(".bslib-grid-item { padding:1px; margin:1px;}"),
-    ui.tags.style(".col-sm-11 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
-    ui.tags.style(".col-sm-1 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
-    ui.tags.style("#prompt { font-size:80%; padding: 3px; }"),
-    ui.tags.style("#main { font-size:90%; padding: 3px; }"),
-    ui.panel_fixed(
-        ui.row(
-            ui.column(11, ui.input_text_area("prompt", "", width="100%", resize=False)),
-            ui.column(
-                1,
-                ui.div(
-                    ui.input_task_button(
-                        "submit",
-                        "Submit",
-                        style="font-size:65%; padding:4px; margin:2px",
-                    ),
-                    ui.div(
-                        ui.input_dark_mode(id="mode"),
-                    ),
-                ),
-            ),
-        ),
-        width="96%;",
-    ),
-    ui.panel_absolute(
-        ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
-        ui.output_ui(id="main"),
-        top="60px",
-        width="96%",
-    ),
-)
 
 def parse_response(x):
     global btn_copy_no
@@ -106,18 +102,16 @@ def parse_response(x):
             ci = "```" + i + "```"
             rw = ui.div(
                 ui.row(
-                    ui.column(11),
-                    ui.column(
-                        1,
-                        ui.input_task_button(
-                            btn_id,
-                            "Copy",
-                            style="font-size:65%; padding:4px; margin:1px; background-color: #999; border-color: #ddd;",
+                    ui.input_task_button(
+                        btn_id,
+                        "", 
+                        icon= faicons.icon_svg("copy", margin_left=0, margin_right=0, width="15px"),
+                        style="font-size:65%; padding:2px; margin:1px; background-color: #bbb; " + 
+                              "border-color: #ddd; width: 50px; margin-left: auto;margin-right: 0;" +
+                              "margin-bottom: -30px;",
                         ),
-                    ),
-                ),
                 ui.row(ui.markdown(ci)),
-            )
+                ))
         else:
             ignore_rw = False
             rw = ui.row(ui.markdown(i))
@@ -133,7 +127,6 @@ def parse_response(x):
         if i != "":
             ret = ret, rw
     return ret
-
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ""
