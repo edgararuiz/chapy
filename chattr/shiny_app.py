@@ -4,6 +4,7 @@ from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from json import loads
 from os import path
 import pyperclip
+import faicons
 
 if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name
@@ -29,13 +30,13 @@ app_ui = ui.page_fluid(
     ui.tags.style("#prompt { font-size:80%; padding: 3px; margin-left: 4px; margin-top: 3px;}"),
     ui.tags.style("#main { font-size:80%; padding: 3px; }"),
     ui.tags.style(".row { padding:0; margin:0px;}"),
-    ui.tags.style(".llmuser { background-color: #000; }"),
     ui.panel_absolute(
         ui.div(
-            ui.output_ui("value").add_style("margin-right: 40px;"),
+            ui.output_ui("value").add_style("margin-right: 40px; margin-left: 5px; font-size:80%;"),
             ui.output_ui(id="main")
         ),
-        top="100px",
+        top="90px",
+        left="0px",
         width="96%"
     ),
     ui.panel_fixed(
@@ -46,12 +47,13 @@ app_ui = ui.page_fluid(
                 ui.input_task_button(
                     "submit",
                     "Submit",
-                    style="font-size:65%; padding:4px; margin:2px",
+                    style="font-size:65%; padding:4px; margin-right:5px; margin-top: 2px;",
                 ),
                 ui.input_dark_mode(id="mode")
             )
         ).add_style("background-color: #ddd;"),
-        width="97%"
+        width="100%",
+        left="0px"
     )    
 )
 
@@ -59,7 +61,7 @@ def app_add_user(x):
     ui.insert_ui(
         ui.card(
             ui.markdown(x), 
-            style="background-color: #376CA4; color: white; margin-left: 50px; margin-right: 0;"
+            style="background-color: #376CA4; color: white; margin-left: 50px; width: 92%;"
             ),
         selector="#main",
         where="afterEnd"
@@ -70,7 +72,7 @@ def app_add_assistant(x, input):
     btn_curr = btn_copy_no
     ui.insert_ui(
         ui.card(
-            parse_response(x), style="padding:0; margin-right: 40px; border-color: #ccc;"
+            parse_response(x), style="padding:0; margin-right: 20px; border-color: #ccc;"
         ),
         selector="#main",
         where="afterEnd",
@@ -102,18 +104,14 @@ def parse_response(x):
             ci = "```" + i + "```"
             rw = ui.div(
                 ui.row(
-                    ui.column(11),
-                    ui.column(
-                        1,
-                        ui.input_task_button(
-                            btn_id,
-                            "Copy",
-                            style="font-size:65%; padding:4px; margin:1px; background-color: #999; border-color: #ddd;",
+                    ui.input_task_button(
+                        btn_id,
+                        "", 
+                        icon= faicons.icon_svg("copy", margin_left=0, margin_right=0, width="15px"),
+                        style="font-size:65%; padding:2px; margin:1px; background-color: #bbb; border-color: #ddd; width: 50px; margin-left: auto;margin-right: 0;",
                         ),
-                    ),
-                ),
                 ui.row(ui.markdown(ci)),
-            )
+                ))
         else:
             ignore_rw = False
             rw = ui.row(ui.markdown(i))
