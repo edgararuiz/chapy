@@ -36,7 +36,7 @@ app_ui = ui.page_fluid(
             ui.output_ui("value").add_style("margin-right: 40px; font-size:80%;"),
             ui.output_ui(id="main")
         ),
-        top="70px",
+        top="80px",
         left="0px",
         width="96%"
     ),
@@ -47,9 +47,9 @@ app_ui = ui.page_fluid(
                 ui.input_task_button(
                     "submit",
                     "Submit",
-                    style="font-size:65%; padding:4px; margin-left: auto;margin-right: 0; width: 50px;",
-                )#,
-                #ui.input_dark_mode(id="mode")
+                    style="font-size:65%; padding:4px; margin-left: auto;margin-right: 0; margin-top: 5px; width: 50px;",
+                ),
+                ui.input_dark_mode(id="mode").add_style("margin-top: -25px;")
             )
         ).add_style("background-color: #ddd; padding-top: 2px; padding-bottom: 5px; padding-right: 2px; padding-left: 2px;"),
         width="100%",
