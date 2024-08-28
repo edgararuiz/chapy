@@ -18,8 +18,6 @@ if "_pkg_location" not in locals():
 btn_copy_no = 0
 btn_copy_txt = []
 
-_history_file = "/Users/edgar/Projects/chattr-python/out.out"
-
 app_ui = ui.page_fluid(
     ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:80%; margin:1px; } "),
     ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
