@@ -12,8 +12,7 @@ import webbrowser
 from json import dumps, loads
 from tempfile import NamedTemporaryFile
 
-#_history_file = NamedTemporaryFile().name
-_history_file = "/Users/edgar/Projects/chattr-python/out.out"
+_history_file = NamedTemporaryFile().name
 _default_file = NamedTemporaryFile().name
 _shiny_url = ""
 

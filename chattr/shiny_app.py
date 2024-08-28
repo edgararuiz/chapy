@@ -14,8 +14,6 @@ if "_default_file" not in locals():
 if "_pkg_location" not in locals():
     _pkg_location = path.dirname(__file__)
 
-_history_file = "/Users/edgar/Projects/chattr-python/out.out"
-
 btn_copy_no = 0
 btn_copy_txt = []
 
@@ -114,7 +112,7 @@ def parse_response(x):
                         ui.input_task_button(
                             btn_id,
                             "Copy",
-                            style="font-size:65%; padding:4px; margin:2px",
+                            style="font-size:65%; padding:4px; margin:1px; background-color: #999; border-color: #ddd;",
                         ),
                     ),
                 ),
