@@ -13,6 +13,7 @@ if "_default_file" not in locals():
 if "_pkg_location" not in locals():
     _pkg_location = path.dirname(__file__)
 
+btn_copy_no = 0
 
 def app_add_user(x):
     ui.insert_ui(
@@ -69,6 +70,7 @@ app_ui = ui.page_fluid(
 )
 
 def parse_response(x):
+    global btn_copy_no
     x_split = x.split("```")
     out = ""
     ret = ()
@@ -81,12 +83,18 @@ def parse_response(x):
                 ignore_rw = True
             else:
                 ignore_rw = False
-
+            btn_copy_no = btn_copy_no + 1
+            btn_id = "copy" + str(btn_copy_no)
             i = "```" + i + "```"
-            rw =  ui.row(
-                ui.input_task_button("copy", "Copy", style="font-size:65%; padding:4px; margin:2px"),
-                ui.markdown(i)                
-            )
+            rw =  ui.div(
+                ui.row(
+                    ui.column(11), 
+                    ui.column(
+                        1, ui.input_task_button(btn_id, "Copy", style="font-size:65%; padding:4px; margin:2px")
+                        )                    
+                ), 
+                ui.row(ui.markdown(i))
+            ) 
         else:
             ignore_rw = False
             rw =  ui.row(
