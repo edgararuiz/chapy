@@ -19,49 +19,25 @@ btn_copy_txt = []
 
 _history_file = "/Users/edgar/Projects/chattr-python/out.out"
 
-def app_add_user(x):
-    ui.insert_ui(
-        ui.layout_columns(
-            ui.p(),
-            ui.card(ui.markdown(x), style="background-color: #376CA4; color: white;"),
-            col_widths=(1, 11),
-        ),
-        selector="#main",
-        where="afterEnd",
-    )
-
-
-def app_add_assistant(x, input):
-
-    btn_curr = btn_copy_no
-    ui.insert_ui(
-        ui.layout_columns(
-            ui.card(
-                parse_response(x), style="padding:0; margin:0; border-color: #ccc;"
-            ),
-            ui.p(),
-            col_widths=(11, 1),
-        ),
-        selector="#main",
-        where="afterEnd",
-    )
-    if btn_curr != btn_copy_no:
-        for btn in range(btn_curr + 1, btn_copy_no + 1):
-            btn_id = "copy" + str(btn)
-            @reactive.effect
-            @reactive.event(getattr(input, btn_id))
-            def _():
-                pyperclip.copy(btn_copy_txt[btn - 1])
-
 app_ui = ui.page_fluid(
-    ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:90%; margin:1px; } "),
+    ui.tags.style(".bslib-gap-spacing { padding:4px; font-size:80%; margin:1px; } "),
     ui.tags.style(".bslib-mb-spacing { padding:1px; margin:1px;}"),
     ui.tags.style(".bslib-grid-item { padding:1px; margin:1px;}"),
+    ui.tags.style(".bslib-card { padding:1px; margin:5px;}"),
     ui.tags.style(".col-sm-11 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
     ui.tags.style(".col-sm-1 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
     ui.tags.style("#prompt { font-size:80%; padding: 3px; margin-left: 4px; margin-top: 3px;}"),
-    ui.tags.style("#main { font-size:90%; padding: 3px; }"),
-    ui.tags.style(".row { background-color: padding:0; margin:0;}"),
+    ui.tags.style("#main { font-size:80%; padding: 3px; }"),
+    ui.tags.style(".row { padding:0; margin:0px;}"),
+    ui.tags.style(".llmuser { background-color: #000; }"),
+    ui.panel_absolute(
+        ui.div(
+            ui.output_ui("value").add_style("margin-right: 40px;"),
+            ui.output_ui(id="main")
+        ),
+        top="100px",
+        width="96%"
+    ),
     ui.panel_fixed(
         ui.row(
             ui.column(11, ui.input_text_area("prompt", "", width="98%", resize=False)),
@@ -74,16 +50,38 @@ app_ui = ui.page_fluid(
                 ),
                 ui.input_dark_mode(id="mode")
             )
-        ),
-        width="97%;"
-    ),
-    ui.panel_absolute(
-        ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
-        ui.output_ui(id="main"),
-        top="60px",
-        width="96%"
-    ),
+        ).add_style("background-color: #ddd;"),
+        width="97%"
+    )    
 )
+
+def app_add_user(x):
+    ui.insert_ui(
+        ui.card(
+            ui.markdown(x), 
+            style="background-color: #376CA4; color: white; margin-left: 50px; margin-right: 0;"
+            ),
+        selector="#main",
+        where="afterEnd"
+    )
+
+def app_add_assistant(x, input):
+
+    btn_curr = btn_copy_no
+    ui.insert_ui(
+        ui.card(
+            parse_response(x), style="padding:0; margin-right: 40px; border-color: #ccc;"
+        ),
+        selector="#main",
+        where="afterEnd",
+    )
+    if btn_curr != btn_copy_no:
+        for btn in range(btn_curr + 1, btn_copy_no + 1):
+            btn_id = "copy" + str(btn)
+            @reactive.effect
+            @reactive.event(getattr(input, btn_id))
+            def _():
+                pyperclip.copy(btn_copy_txt[btn - 1])
 
 def parse_response(x):
     global btn_copy_no
@@ -131,7 +129,6 @@ def parse_response(x):
         if i != "":
             ret = ret, rw
     return ret
-
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ""
