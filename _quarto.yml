@@ -7,7 +7,8 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
-
+    theme: cosmo
+  
 website:
   title: chattr
   navbar:
