@@ -17,6 +17,7 @@ if "_pkg_location" not in locals():
 btn_copy_no = 0
 btn_copy_txt = []
 
+_history_file = "/Users/edgar/Projects/chattr-python/out.out"
 
 def app_add_user(x):
     ui.insert_ui(
@@ -58,32 +59,29 @@ app_ui = ui.page_fluid(
     ui.tags.style(".bslib-grid-item { padding:1px; margin:1px;}"),
     ui.tags.style(".col-sm-11 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
     ui.tags.style(".col-sm-1 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
-    ui.tags.style("#prompt { font-size:80%; padding: 3px; }"),
+    ui.tags.style("#prompt { font-size:80%; padding: 3px; margin-left: 4px; margin-top: 3px;}"),
     ui.tags.style("#main { font-size:90%; padding: 3px; }"),
+    ui.tags.style(".row { background-color: padding:0; margin:0;}"),
     ui.panel_fixed(
         ui.row(
-            ui.column(11, ui.input_text_area("prompt", "", width="100%", resize=False)),
+            ui.column(11, ui.input_text_area("prompt", "", width="98%", resize=False)),
             ui.column(
                 1,
-                ui.div(
-                    ui.input_task_button(
-                        "submit",
-                        "Submit",
-                        style="font-size:65%; padding:4px; margin:2px",
-                    ),
-                    ui.div(
-                        ui.input_dark_mode(id="mode"),
-                    ),
+                ui.input_task_button(
+                    "submit",
+                    "Submit",
+                    style="font-size:65%; padding:4px; margin:2px",
                 ),
-            ),
+                ui.input_dark_mode(id="mode")
+            )
         ),
-        width="96%;",
+        width="97%;"
     ),
     ui.panel_absolute(
         ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
         ui.output_ui(id="main"),
         top="60px",
-        width="96%",
+        width="96%"
     ),
 )
 
