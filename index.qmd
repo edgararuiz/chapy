@@ -1,1 +1,28 @@
+---
+format:
+  html:
+    toc: false
+---
+
+```{python}
+#| include: false
+
+import tomllib
+
+with open("pyproject.toml", "rb") as f:
+    pyproject = tomllib.load(f)
+
+authors = pyproject.get("project").get("authors")
+project = pyproject.get("project").get("name")
+version = pyproject.get("project").get("version")
+```
+
+:::{.column-margin style="font-size: 20px; color: #555;"}
+### Project 
+`{python} project` - `{python} version`
+
+### Developers
+`{python} authors[0].get("name")`
+:::
+
 {{< include README.md >}}
