@@ -17,6 +17,7 @@ if "_pkg_location" not in locals():
 btn_copy_no = 0
 btn_copy_txt = []
 
+
 def app_add_user(x):
     ui.insert_ui(
         ui.layout_columns(
@@ -32,13 +33,16 @@ def app_add_user(x):
 def app_add_assistant(x, input):
     ui.insert_ui(
         ui.layout_columns(
-            ui.card(parse_response(x), style="padding:0; margin:0; border-color: #ccc;"),
+            ui.card(
+                parse_response(x), style="padding:0; margin:0; border-color: #ccc;"
+            ),
             ui.p(),
             col_widths=(11, 1),
         ),
         selector="#main",
         where="afterEnd",
     )
+
     @reactive.effect
     @reactive.event(getattr(input, "copy1"))
     def _():
@@ -51,29 +55,34 @@ app_ui = ui.page_fluid(
     ui.tags.style(".bslib-grid-item { padding:1px; margin:1px;}"),
     ui.tags.style(".col-sm-11 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
     ui.tags.style(".col-sm-1 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
-    #ui.tags.style(".container-fluid { display: grid; grid-template-rows: 1fr auto; }"),
+    # ui.tags.style(".container-fluid { display: grid; grid-template-rows: 1fr auto; }"),
     ui.panel_fixed(
         ui.row(
-            ui.column(11,
-                ui.input_text_area("prompt", "", width="100%", resize=False)
-            ),
-            ui.column(1,
-            ui.div(
-                ui.input_task_button(
-                    "submit", "Submit", style="font-size:65%; padding:4px; margin:2px"
-                ),
+            ui.column(11, ui.input_text_area("prompt", "", width="100%", resize=False)),
+            ui.column(
+                1,
                 ui.div(
-                    ui.input_dark_mode(id="mode"),
-                )            
-            )
-        )), width="98%;"), 
+                    ui.input_task_button(
+                        "submit",
+                        "Submit",
+                        style="font-size:65%; padding:4px; margin:2px",
+                    ),
+                    ui.div(
+                        ui.input_dark_mode(id="mode"),
+                    ),
+                ),
+            ),
+        ),
+        width="98%;",
+    ),
     ui.panel_absolute(
         ui.layout_columns(ui.output_ui("value"), ui.p(), col_widths=(11, 1)),
-        ui.output_ui(id="main"), 
-        top = "60px", 
-        width= "98%"
-        ),
+        ui.output_ui(id="main"),
+        top="60px",
+        width="98%",
+    ),
 )
+
 
 def parse_response(x):
     global btn_copy_no
@@ -92,31 +101,34 @@ def parse_response(x):
             btn_copy_no = btn_copy_no + 1
             btn_id = "copy" + str(btn_copy_no)
             print(btn_id)
-            i = "```" + i + "```"
-            rw =  ui.div(
+            ci = "```" + i + "```"
+            rw = ui.div(
                 ui.row(
-                    ui.column(11), 
+                    ui.column(11),
                     ui.column(
-                        1, ui.input_task_button(btn_id, "Copy", style="font-size:65%; padding:4px; margin:2px")
-                        )                    
-                ), 
-                ui.row(ui.markdown(i))
-            ) 
+                        1,
+                        ui.input_task_button(
+                            btn_id,
+                            "Copy",
+                            style="font-size:65%; padding:4px; margin:2px",
+                        ),
+                    ),
+                ),
+                ui.row(ui.markdown(ci)),
+            )
         else:
             ignore_rw = False
-            rw =  ui.row(
-                ui.markdown(i)                
-            )            
+            rw = ui.row(ui.markdown(i))
         if is_code == False:
             is_code = True
         else:
+            btn_copy_txt.append(i)
             is_code = False
 
         if i != "":
-            if is_code:
-                btn_copy_txt.append(i)
             ret = ret, rw
-    return(ret)
+    return ret
+
 
 def server(input: Inputs, output: Outputs, session: Session):
     response = ""
