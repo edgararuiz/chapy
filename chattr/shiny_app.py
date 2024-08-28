@@ -3,6 +3,7 @@ from tempfile import NamedTemporaryFile
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from json import loads
 from os import path
+import pyperclip
 
 if "_history_file" not in locals():
     _history_file = NamedTemporaryFile().name
@@ -14,6 +15,7 @@ if "_pkg_location" not in locals():
     _pkg_location = path.dirname(__file__)
 
 btn_copy_no = 0
+btn_copy_txt = []
 
 def app_add_user(x):
     ui.insert_ui(
@@ -27,7 +29,7 @@ def app_add_user(x):
     )
 
 
-def app_add_assistant(x):
+def app_add_assistant(x, input):
     ui.insert_ui(
         ui.layout_columns(
             ui.card(parse_response(x), style="padding:0; margin:0; border-color: #ccc;"),
@@ -37,6 +39,10 @@ def app_add_assistant(x):
         selector="#main",
         where="afterEnd",
     )
+    @reactive.effect
+    @reactive.event(getattr(input, "copy1"))
+    def _():
+        pyperclip.copy(btn_copy_txt[0])
 
 
 app_ui = ui.page_fluid(
@@ -85,6 +91,7 @@ def parse_response(x):
                 ignore_rw = False
             btn_copy_no = btn_copy_no + 1
             btn_id = "copy" + str(btn_copy_no)
+            print(btn_id)
             i = "```" + i + "```"
             rw =  ui.div(
                 ui.row(
@@ -105,7 +112,9 @@ def parse_response(x):
         else:
             is_code = False
 
-        if i != "``````":
+        if i != "":
+            if is_code:
+                btn_copy_txt.append(i)
             ret = ret, rw
     return(ret)
 
@@ -121,7 +130,7 @@ def server(input: Inputs, output: Outputs, session: Session):
             if role == "user":
                 app_add_user(content)
             if role == "assistant":
-                app_add_assistant(content)
+                app_add_assistant(content, input)
 
     @reactive.effect
     @reactive.event(input.submit)
@@ -153,7 +162,7 @@ def server(input: Inputs, output: Outputs, session: Session):
                 response = response + out
             else:
                 if response != "":
-                    app_add_assistant(response)
+                    app_add_assistant(response, input)
                     response = ""
         return ui.markdown(response)
 
