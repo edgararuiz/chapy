@@ -27,31 +27,31 @@ app_ui = ui.page_fluid(
     ui.tags.style(".bslib-card { padding:1px; margin:5px;}"),
     ui.tags.style(".col-sm-11 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
     ui.tags.style(".col-sm-1 { margin: 0px; padding-left: 2px; padding-right: 2px; }"),
-    ui.tags.style("#prompt { font-size:80%; padding: 3px; margin-left: 4px; margin-top: 3px;}"),
+    ui.tags.style("#prompt { font-size:80%; padding: 0; margin: 0;}"),
     ui.tags.style("#main { font-size:80%; padding: 3px; }"),
     ui.tags.style(".row { padding:0; margin:0px;}"),
+    ui.tags.style(".shiny-input-container { padding:2px; margin:0px;}"),
     ui.panel_absolute(
         ui.div(
-            ui.output_ui("value").add_style("margin-right: 40px; margin-left: 5px; font-size:80%;"),
+            ui.output_ui("value").add_style("margin-right: 40px; font-size:80%;"),
             ui.output_ui(id="main")
         ),
-        top="90px",
+        top="70px",
         left="0px",
         width="96%"
     ),
     ui.panel_fixed(
         ui.row(
-            ui.column(11, ui.input_text_area("prompt", "", width="98%", resize=False)),
-            ui.column(
-                1,
+            ui.row(ui.input_text_area("prompt", "", width="100%", resize=False, autoresize=False)),
+            ui.row(
                 ui.input_task_button(
                     "submit",
                     "Submit",
-                    style="font-size:65%; padding:4px; margin-right:5px; margin-top: 2px;",
-                ),
-                ui.input_dark_mode(id="mode")
+                    style="font-size:65%; padding:4px; margin-left: auto;margin-right: 0; width: 50px;",
+                )#,
+                #ui.input_dark_mode(id="mode")
             )
-        ).add_style("background-color: #ddd;"),
+        ).add_style("background-color: #ddd; padding-top: 2px; padding-bottom: 5px; padding-right: 2px; padding-left: 2px;"),
         width="100%",
         left="0px"
     )    
@@ -108,7 +108,9 @@ def parse_response(x):
                         btn_id,
                         "", 
                         icon= faicons.icon_svg("copy", margin_left=0, margin_right=0, width="15px"),
-                        style="font-size:65%; padding:2px; margin:1px; background-color: #bbb; border-color: #ddd; width: 50px; margin-left: auto;margin-right: 0;",
+                        style="font-size:65%; padding:2px; margin:1px; background-color: #bbb; " + 
+                              "border-color: #ddd; width: 50px; margin-left: auto;margin-right: 0;" +
+                              "margin-bottom: -30px;",
                         ),
                 ui.row(ui.markdown(ci)),
                 ))
