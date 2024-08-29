@@ -1,4 +1,4 @@
-# chattr (for Python)
+# chattr
 
 ## Installation
 

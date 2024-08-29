@@ -79,28 +79,28 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "chattr (for Python)",
+    "title": "chattr",
     "section": "",
-    "text": "chattr - 0.0.4\n\n\n\nEdgar Ruiz"
+    "text": "Version\n0.0.4\nDevelopers\nEdgar Ruiz"
   },
   {
     "objectID": "index.html#installation",
     "href": "index.html#installation",
-    "title": "chattr (for Python)",
+    "title": "chattr",
     "section": "Installation",
     "text": "Installation\nTo install from Github:\npip install git+https://github.com/edgararuiz/chattr-python"
   },
   {
     "objectID": "index.html#usage-from-positron",
     "href": "index.html#usage-from-positron",
-    "title": "chattr (for Python)",
+    "title": "chattr",
     "section": "Usage (from Positron)",
     "text": "Usage (from Positron)\nThis application has been developed and tested in the Positron IDE.\n\nConsole\nTo use in the console, use the chat() function:\nimport chattr\nchattr.chat(\"What package should I use to read parquet files?\")\n\n\nShiny app\nAs with it’s sister R package, chattr comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode Shiny extension installed.\nTo run the app use:\nimport chattr\nchattr.app()"
   },
   {
     "objectID": "index.html#limitations",
     "href": "index.html#limitations",
-    "title": "chattr (for Python)",
+    "title": "chattr",
     "section": "Limitations",
     "text": "Limitations\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging."
   },
