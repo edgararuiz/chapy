@@ -4,7 +4,6 @@ format:
     toc: false
 ipynb-shell-interactivity: all
 ---
-
 ```{python}
 #| include: false
 from IPython.display import Markdown
@@ -24,13 +23,14 @@ issues = pyproject.get("project").get("urls").get("issues")
 authors_list = ""
 for author in authors: 
     authors_list = authors_list + author.get("name") + "\nAuthor"
-
 ```
 
-:::{.column-margin style="font-size: 20px; color: #555; font-weight: 200;"}
+
+:::{.column-margin style="font-size: 18px; color: #555; font-weight: 300;"}
 **Links**
 
 [Browse source code](`{python} homepage`)
+
 [Report a bug](`{python} issues`)
 
 <br/>
@@ -52,5 +52,5 @@ for author in authors:
 
 :::
 
-
 {{< include README.md >}}
+
