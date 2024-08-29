@@ -102,7 +102,7 @@
     "href": "index.html#limitations",
     "title": "chattr",
     "section": "Limitations",
-    "text": "Limitations\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging."
+    "text": "Limitations\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging.\n\n\nchattr - 0.0.4 | Developed by Edgar Ruiz"
   },
   {
     "objectID": "reference/use.html",
@@ -159,12 +159,5 @@
     "title": "app",
     "section": "",
     "text": "import chattr\nchattr.app()"
-  },
-  {
-    "objectID": "index.html#chattr",
-    "href": "index.html#chattr",
-    "title": "chattr",
-    "section": "chattr",
-    "text": "chattr"
   }
 ]

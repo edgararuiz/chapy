@@ -7,10 +7,14 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
-    theme: cosmo
+    theme: 
+      light: cosmo
+      dark: darkly
   
 website:
   title: chattr
+  page-footer:
+    border: true
   navbar:
     left:
       - href: index.qmd

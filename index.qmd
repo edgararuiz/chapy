@@ -22,7 +22,9 @@ issues = pyproject.get("project").get("urls").get("issues")
 
 authors_list = ""
 for author in authors: 
-    authors_list = authors_list + author.get("name") + "\nAuthor"
+    if authors_list != "":
+        authors_list = author_list + ", "
+    authors_list = authors_list + author.get("name")
 ```
 
 
@@ -55,3 +57,11 @@ for author in authors:
 
 {{< include README.md >}}
 
+
+:::{.footer style="text-align: center;"}
+
+<hr/>
+
+`{python} project` - `{python} version` | Developed by `{python} authors_list`
+
+:::
