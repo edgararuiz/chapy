@@ -26,8 +26,15 @@ for author in authors:
 ```
 
 
-:::{.column-margin style="font-size: 18px; color: #555; font-weight: 300;"}
-**Links**
+:::{.column-margin style="font-size: 18px; color: #555; font-weight: 400;"}
+
+[Version]{style="font-size: 22px; font-weight: 800;"}
+
+`{python} version`
+
+<br/>
+
+[Links]{style="font-size: 22px; font-weight: 800;"}
 
 [Browse source code](`{python} homepage`)
 
@@ -35,19 +42,13 @@ for author in authors:
 
 <br/>
 
-**Version**
-
-`{python} version`
-
-<br/>
-
-**Developers**
+[Developers]{style="font-size: 22px; font-weight: 800;"}
 
 ```{python}
 #| echo: false
 for author in authors: 
     Markdown(author.get("name"))
-    Markdown("*Author*")
+    Markdown("[Author]{style='font-size:15px;'}")
 ```
 
 :::
