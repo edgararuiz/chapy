@@ -7,9 +7,9 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
-    theme: 
-      light: cosmo
-      dark: darkly
+    theme:
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme-dark.scss]
   
 website:
   title: chattr
