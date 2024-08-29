@@ -1,1 +1,2 @@
 graft chattr
+prune reference

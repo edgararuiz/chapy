@@ -1,0 +1,15 @@
+# Function reference {.doc .doc-index}
+
+## Main functions
+
+| | |
+| --- | --- |
+| [chat](chat.qmd#chattr.chat) | Interact with the LLM via the console |
+| [app](app.qmd#chattr.app) | Open the Shiny chat app |
+
+## Utils
+
+| | |
+| --- | --- |
+| [use](use.qmd#chattr.use) | Specify which LLM you will use |
+| [session_defaults](session_defaults.qmd#chattr.session_defaults) | View and set defaults for the session with LLM |

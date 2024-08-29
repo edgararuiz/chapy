@@ -1,0 +1,28 @@
+# session_defaults { #chattr.session_defaults }
+
+`session_defaults(**kwargs)`
+
+View and set defaults for the session with LLM
+
+## Details
+
+
+Change or add any default to use as options for your interaction with the
+LLM. The defaults will apply both in the console interaction (`chattr.chat()`),
+and the Shiny app interaction (`chattr.app()`)
+
+## Parameters
+
+| Name       | Type   | Description                                                               | Default   |
+|------------|--------|---------------------------------------------------------------------------|-----------|
+| `**kwargs` |        | Arguments to override the defaults. Such as the 'model', amd 'system_msg' | `{}`      |
+
+## Examples
+
+```python
+import chattr
+chattr.defaults()
+
+# Override the model to use
+chattr.defaults(model = "llama2")
+```

@@ -18,3 +18,6 @@ dependencies = [
   homepage = "https://github.com/edgararuiz/chattr-python"
   documentation = "https://edgararuiz.github.io/chattr-python/"
   issues = "https://github.com/edgararuiz/chattr-python/issues"
+[tool.setuptools]
+  packages=["chattr"]
+  
