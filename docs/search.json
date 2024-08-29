@@ -32,21 +32,7 @@
     "href": "reference/index.html",
     "title": "Function reference",
     "section": "",
-    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app\n\n\n\n\n\n\n\n\n\nuse\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM"
-  },
-  {
-    "objectID": "reference/index.html#main-functions",
-    "href": "reference/index.html#main-functions",
-    "title": "Function reference",
-    "section": "",
     "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app"
-  },
-  {
-    "objectID": "reference/index.html#utils",
-    "href": "reference/index.html#utils",
-    "title": "Function reference",
-    "section": "",
-    "text": "use\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM"
   },
   {
     "objectID": "reference/session_defaults.html",
@@ -159,5 +145,19 @@
     "title": "app",
     "section": "",
     "text": "import chattr\nchattr.app()"
+  },
+  {
+    "objectID": "reference/index.html#main-functions",
+    "href": "reference/index.html#main-functions",
+    "title": "Function reference",
+    "section": "",
+    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app"
+  },
+  {
+    "objectID": "reference/index.html#utils",
+    "href": "reference/index.html#utils",
+    "title": "Function reference",
+    "section": "Utils",
+    "text": "Utils\n\n\n\nuse\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM\n\n\n\n\n\nchattr - 0.0.4 | Developed by Edgar Ruiz"
   }
 ]
