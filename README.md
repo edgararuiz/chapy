@@ -1,4 +1,4 @@
-# chattr
+# `chattr`
 
 ## Installation
 

@@ -32,21 +32,7 @@
     "href": "reference/index.html",
     "title": "Function reference",
     "section": "",
-    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app\n\n\n\n\n\n\n\n\n\nuse\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM"
-  },
-  {
-    "objectID": "reference/index.html#main-functions",
-    "href": "reference/index.html#main-functions",
-    "title": "Function reference",
-    "section": "",
     "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app"
-  },
-  {
-    "objectID": "reference/index.html#utils",
-    "href": "reference/index.html#utils",
-    "title": "Function reference",
-    "section": "",
-    "text": "use\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM"
   },
   {
     "objectID": "reference/session_defaults.html",
@@ -102,7 +88,7 @@
     "href": "index.html#limitations",
     "title": "chattr",
     "section": "Limitations",
-    "text": "Limitations\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging."
+    "text": "Limitations\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging.\n\n\nchattr - 0.0.4 | Developed by Edgar Ruiz"
   },
   {
     "objectID": "reference/use.html",
@@ -161,10 +147,17 @@
     "text": "import chattr\nchattr.app()"
   },
   {
-    "objectID": "index.html#chattr",
-    "href": "index.html#chattr",
-    "title": "chattr",
-    "section": "chattr",
-    "text": "chattr"
+    "objectID": "reference/index.html#main-functions",
+    "href": "reference/index.html#main-functions",
+    "title": "Function reference",
+    "section": "",
+    "text": "chat\nInteract with the LLM via the console\n\n\napp\nOpen the Shiny chat app"
+  },
+  {
+    "objectID": "reference/index.html#utils",
+    "href": "reference/index.html#utils",
+    "title": "Function reference",
+    "section": "Utils",
+    "text": "Utils\n\n\n\nuse\nSpecify which LLM you will use\n\n\nsession_defaults\nView and set defaults for the session with LLM\n\n\n\n\n\nchattr - 0.0.4 | Developed by Edgar Ruiz"
   }
 ]

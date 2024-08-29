@@ -1,15 +1,27 @@
-# Function reference {.doc .doc-index}
+{{< include /reference/_api_index.qmd >}}
 
-## Main functions
+```{python}
+#| include: false
+import tomllib
 
-| | |
-| --- | --- |
-| [chat](chat.qmd#chattr.chat) | Interact with the LLM via the console |
-| [app](app.qmd#chattr.app) | Open the Shiny chat app |
+with open("../pyproject.toml", "rb") as f:
+    pyproject = tomllib.load(f)
 
-## Utils
+authors = pyproject.get("project").get("authors")
+project = pyproject.get("project").get("name")
+version = pyproject.get("project").get("version")
 
-| | |
-| --- | --- |
-| [use](use.qmd#chattr.use) | Specify which LLM you will use |
-| [session_defaults](session_defaults.qmd#chattr.session_defaults) | View and set defaults for the session with LLM |
+authors_list = ""
+for author in authors: 
+    if authors_list != "":
+        authors_list = author_list + ", "
+    authors_list = authors_list + author.get("name")
+```
+
+:::{.footer style="text-align: center;"}
+
+<hr/>
+
+`{python} project` - `{python} version` | Developed by `{python} authors_list`
+
+:::

@@ -7,7 +7,9 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
-    theme: cosmo
+    theme:
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme-dark.scss]
   
 website:
   title: chattr
@@ -25,7 +27,8 @@ quartodoc:
   package: chattr
   options: null
   style: pkgdown
-  dir: 'reference'
+  dir: reference
+  out_index: _api_index.qmd
   dynamic: true
   sections:
     - title: Main functions
