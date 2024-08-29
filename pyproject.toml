@@ -14,3 +14,7 @@ dependencies = [
     "faicons>=0.2.2",
     "pyperclip>=1.9.0",
 ]
+[project.urls]
+  homepage = "https://github.com/edgararuiz/chattr-python"
+  documentation = "https://edgararuiz.github.io/chattr-python/"
+  issues = "https://github.com/edgararuiz/chattr-python/issues"

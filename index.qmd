@@ -2,11 +2,13 @@
 format:
   html:
     toc: false
+ipynb-shell-interactivity: all
 ---
 
 ```{python}
 #| include: false
-
+from IPython.display import Markdown
+import sys
 import tomllib
 
 with open("pyproject.toml", "rb") as f:
@@ -15,16 +17,40 @@ with open("pyproject.toml", "rb") as f:
 authors = pyproject.get("project").get("authors")
 project = pyproject.get("project").get("name")
 version = pyproject.get("project").get("version")
+homepage = pyproject.get("project").get("urls").get("homepage")
+documentation = pyproject.get("project").get("urls").get("documentation")
+issues = pyproject.get("project").get("urls").get("issues")
+
+authors_list = ""
+for author in authors: 
+    authors_list = authors_list + author.get("name") + "\nAuthor"
+
 ```
 
 :::{.column-margin style="font-size: 20px; color: #555; font-weight: 200;"}
+**Links**
+
+[Browse source code](`{python} homepage`)
+[Report a bug](`{python} issues`)
+
+<br/>
+
 **Version**
 
 `{python} version`
 
+<br/>
+
 **Developers**
 
-`{python} authors[0].get("name")`
+```{python}
+#| echo: false
+for author in authors: 
+    Markdown(author.get("name"))
+    Markdown("*Author*")
+```
+
 :::
+
 
 {{< include README.md >}}
