@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>chattr</title>
+<title>chapy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">chattr</span>
+    <span class="navbar-title">chapy</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/edgararuiz/chattr-python"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/edgararuiz/chapy-python"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -164,8 +164,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>0.0.4</p>
 <p><br></p>
 <p><span style="font-size: 22px; font-weight: 800;">Links</span></p>
-<p><a href="https://github.com/edgararuiz/chattr-python">Browse source code</a></p>
-<p><a href="https://github.com/edgararuiz/chattr-python/issues">Report a bug</a></p>
+<p><a href="https://github.com/edgararuiz/chapy-python">Browse source code</a></p>
+<p><a href="https://github.com/edgararuiz/chapy-python/issues">Report a bug</a></p>
 <p><br></p>
 <p><span style="font-size: 22px; font-weight: 800;">Developers</span></p>
 <div id="e7987834" class="cell" data-execution_count="2">
@@ -176,12 +176,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span style="font-size:15px;">Author</span></p>
 </div>
 </div>
-</div></div><section id="chattr" class="level1">
-<h1>chattr</h1>
+</div></div><section id="chapy" class="level1">
+<h1>chapy</h1>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>To install from Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>edgararuiz<span class="op">/</span>chattr<span class="op">-</span>python</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>edgararuiz<span class="op">/</span>chapy<span class="op">-</span>python</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="usage-from-positron" class="level2">
 <h2 class="anchored" data-anchor-id="usage-from-positron">Usage (from Positron)</h2>
@@ -189,15 +189,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="console" class="level3">
 <h3 class="anchored" data-anchor-id="console">Console</h3>
 <p>To use in the console, use the <code>chat()</code> function:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chattr</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chattr.chat(<span class="st">"What package should I use to read parquet files?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chapy</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chapy.chat(<span class="st">"What package should I use to read parquet files?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="shiny-app" class="level3">
 <h3 class="anchored" data-anchor-id="shiny-app">Shiny app</h3>
-<p>As with it’s sister R package, <code>chattr</code> comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode <a href="https://marketplace.visualstudio.com/items?itemName=Posit.shiny">Shiny extension</a> installed.</p>
+<p>As with it’s sister R package, <code>chapy</code> comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode <a href="https://marketplace.visualstudio.com/items?itemName=Posit.shiny">Shiny extension</a> installed.</p>
 <p>To run the app use:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chattr</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chattr.app()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chapy</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chapy.app()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="limitations" class="level2">
@@ -206,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging.</p>
 <div class="footer" style="text-align: center;">
 <hr>
-<p>chattr - 0.0.4 | Developed by Edgar Ruiz</p>
+<p>chapy - 0.0.4 | Developed by Edgar Ruiz</p>
 </div>
 
 

@@ -135,7 +135,7 @@ wheels = [
 ]
 
 [[package]]
-name = "chattr"
+name = "chapy"
 version = "0.0.3"
 source = { editable = "." }
 dependencies = [

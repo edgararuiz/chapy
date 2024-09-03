@@ -1,4 +1,4 @@
-# app { #chattr.app }
+# app { #chapy.app }
 
 `app(host='127.0.0.1', port='auto')`
 
@@ -8,7 +8,7 @@ Open the Shiny chat app
 
 Easily interact with an LLM by simply opening the Shiny app and
 using with the chat interface. If the app was closed, and
-reopened, `chattr` will reuse the exact same host and port as
+reopened, `chapy` will reuse the exact same host and port as
 the first time it was opened.
 
 Restarting Python will automatically close the app.
@@ -18,11 +18,11 @@ Restarting Python will automatically close the app.
 | Name   | Type   | Description                                                                                                           | Default       |
 |--------|--------|-----------------------------------------------------------------------------------------------------------------------|---------------|
 | `host` |        | The host of the Shiny app                                                                                             | `'127.0.0.1'` |
-| `port` |        | The port to open the Shiny app in. Defaults to 'auto'. If left 'auto', the `chattr` will look for an open port to use | `'auto'`      |
+| `port` |        | The port to open the Shiny app in. Defaults to 'auto'. If left 'auto', the `chapy` will look for an open port to use | `'auto'`      |
 
 ## Examples
 
 ```python
-import chattr
-chattr.app()
+import chapy
+chapy.app()
 ```

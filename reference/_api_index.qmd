@@ -4,12 +4,12 @@
 
 | | |
 | --- | --- |
-| [chat](chat.qmd#chattr.chat) | Interact with the LLM via the console |
-| [app](app.qmd#chattr.app) | Open the Shiny chat app |
+| [chat](chat.qmd#chapy.chat) | Interact with the LLM via the console |
+| [app](app.qmd#chapy.app) | Open the Shiny chat app |
 
 ## Utils
 
 | | |
 | --- | --- |
-| [use](use.qmd#chattr.use) | Specify which LLM you will use |
-| [session_defaults](session_defaults.qmd#chattr.session_defaults) | View and set defaults for the session with LLM |
+| [use](use.qmd#chapy.use) | Specify which LLM you will use |
+| [session_defaults](session_defaults.qmd#chapy.session_defaults) | View and set defaults for the session with LLM |

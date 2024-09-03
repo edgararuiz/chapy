@@ -1,4 +1,4 @@
-# chat { #chattr.chat }
+# chat { #chapy.chat }
 
 `chat(prompt, stream=True, preview=False, **kwargs)`
 
@@ -20,6 +20,6 @@ Easily interact with an LLM by simply passing a prompt as an argument
 ## Examples
 
 ```python
-import chattr
-chattr.chat("How do I create a plot?")
+import chapy
+chapy.chat("How do I create a plot?")
 ```

@@ -4,7 +4,7 @@
     "href": "reference/chat.html",
     "title": "chat",
     "section": "",
-    "text": "chat(prompt, stream=True, preview=False, **kwargs)\nInteract with the LLM via the console\n\n\nEasily interact with an LLM by simply passing a prompt as an argument\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprompt\n\nThe request to be sent to the model.\nrequired\n\n\nstream\n\nProcess the response from the LLM as a stream of text instead of waiting for the entire response to complete before displaying. Defaults to True.\nTrue\n\n\npreview\n\nIf True, returns what it will be sent to the LLM. Defaults to False.\nFalse\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chattr\nchattr.chat(\"How do I create a plot?\")"
+    "text": "chat(prompt, stream=True, preview=False, **kwargs)\nInteract with the LLM via the console\n\n\nEasily interact with an LLM by simply passing a prompt as an argument\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprompt\n\nThe request to be sent to the model.\nrequired\n\n\nstream\n\nProcess the response from the LLM as a stream of text instead of waiting for the entire response to complete before displaying. Defaults to True.\nTrue\n\n\npreview\n\nIf True, returns what it will be sent to the LLM. Defaults to False.\nFalse\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chapy\nchattr.chat(\"How do I create a plot?\")"
   },
   {
     "objectID": "reference/chat.html#details",
@@ -25,7 +25,7 @@
     "href": "reference/chat.html#examples",
     "title": "chat",
     "section": "",
-    "text": "import chattr\nchattr.chat(\"How do I create a plot?\")"
+    "text": "import chapy\nchattr.chat(\"How do I create a plot?\")"
   },
   {
     "objectID": "reference/index.html",
@@ -39,14 +39,14 @@
     "href": "reference/session_defaults.html",
     "title": "session_defaults",
     "section": "",
-    "text": "session_defaults(**kwargs)\nView and set defaults for the session with LLM\n\n\nChange or add any default to use as options for your interaction with the LLM. The defaults will apply both in the console interaction (chattr.chat()), and the Shiny app interaction (chattr.app())\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chattr\nchattr.defaults()\n\n# Override the model to use\nchattr.defaults(model = \"llama2\")"
+    "text": "session_defaults(**kwargs)\nView and set defaults for the session with LLM\n\n\nChange or add any default to use as options for your interaction with the LLM. The defaults will apply both in the console interaction (chapy.chat()), and the Shiny app interaction (chapy.app())\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chapy\nchattr.defaults()\n\n# Override the model to use\nchattr.defaults(model = \"llama2\")"
   },
   {
     "objectID": "reference/session_defaults.html#details",
     "href": "reference/session_defaults.html#details",
     "title": "session_defaults",
     "section": "",
-    "text": "Change or add any default to use as options for your interaction with the LLM. The defaults will apply both in the console interaction (chattr.chat()), and the Shiny app interaction (chattr.app())"
+    "text": "Change or add any default to use as options for your interaction with the LLM. The defaults will apply both in the console interaction (chapy.chat()), and the Shiny app interaction (chapy.app())"
   },
   {
     "objectID": "reference/session_defaults.html#parameters",
@@ -60,33 +60,33 @@
     "href": "reference/session_defaults.html#examples",
     "title": "session_defaults",
     "section": "",
-    "text": "import chattr\nchattr.defaults()\n\n# Override the model to use\nchattr.defaults(model = \"llama2\")"
+    "text": "import chapy\nchattr.defaults()\n\n# Override the model to use\nchattr.defaults(model = \"llama2\")"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "chattr",
+    "title": "chapy",
     "section": "",
     "text": "Version\n0.0.4\n\nLinks\nBrowse source code\nReport a bug\n\nDevelopers\n\n\nEdgar Ruiz\n\n\nAuthor"
   },
   {
     "objectID": "index.html#installation",
     "href": "index.html#installation",
-    "title": "chattr",
+    "title": "chapy",
     "section": "Installation",
-    "text": "Installation\nTo install from Github:\npip install git+https://github.com/edgararuiz/chattr-python"
+    "text": "Installation\nTo install from Github:\npip install git+https://github.com/edgararuiz/chapy-python"
   },
   {
     "objectID": "index.html#usage-from-positron",
     "href": "index.html#usage-from-positron",
-    "title": "chattr",
+    "title": "chapy",
     "section": "Usage (from Positron)",
-    "text": "Usage (from Positron)\nThis application has been developed and tested in the Positron IDE.\n\nConsole\nTo use in the console, use the chat() function:\nimport chattr\nchattr.chat(\"What package should I use to read parquet files?\")\n\n\nShiny app\nAs with it’s sister R package, chattr comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode Shiny extension installed.\nTo run the app use:\nimport chattr\nchattr.app()"
+    "text": "Usage (from Positron)\nThis application has been developed and tested in the Positron IDE.\n\nConsole\nTo use in the console, use the chat() function:\nimport chapy\nchattr.chat(\"What package should I use to read parquet files?\")\n\n\nShiny app\nAs with it’s sister R package, chapy comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode Shiny extension installed.\nTo run the app use:\nimport chapy\nchattr.app()"
   },
   {
     "objectID": "index.html#limitations",
     "href": "index.html#limitations",
-    "title": "chattr",
+    "title": "chapy",
     "section": "Limitations",
     "text": "Limitations\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging.\n\n\nchattr - 0.0.4 | Developed by Edgar Ruiz"
   },
@@ -95,7 +95,7 @@
     "href": "reference/use.html",
     "title": "use",
     "section": "",
-    "text": "use(provider='', **kwargs)\nSpecify which LLM you will use\n\n\nIndicate which LLM and model you would like to use during your Python session. At this time only Ollama models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprovider\n\nName of the LLM provider you wish to use. Currently, only ‘olama’ is supported\n''\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chattr\nchattr.use(\"ollama\")"
+    "text": "use(provider='', **kwargs)\nSpecify which LLM you will use\n\n\nIndicate which LLM and model you would like to use during your Python session. At this time only Ollama models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprovider\n\nName of the LLM provider you wish to use. Currently, only ‘olama’ is supported\n''\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chapy\nchattr.use(\"ollama\")"
   },
   {
     "objectID": "reference/use.html#details",
@@ -116,35 +116,35 @@
     "href": "reference/use.html#examples",
     "title": "use",
     "section": "",
-    "text": "import chattr\nchattr.use(\"ollama\")"
+    "text": "import chapy\nchattr.use(\"ollama\")"
   },
   {
     "objectID": "reference/app.html",
     "href": "reference/app.html",
     "title": "app",
     "section": "",
-    "text": "app(host='127.0.0.1', port='auto')\nOpen the Shiny chat app\n\n\nEasily interact with an LLM by simply opening the Shiny app and using with the chat interface. If the app was closed, and reopened, chattr will reuse the exact same host and port as the first time it was opened.\nRestarting Python will automatically close the app.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhost\n\nThe host of the Shiny app\n'127.0.0.1'\n\n\nport\n\nThe port to open the Shiny app in. Defaults to ‘auto’. If left ‘auto’, the chattr will look for an open port to use\n'auto'\n\n\n\n\n\n\nimport chattr\nchattr.app()"
+    "text": "app(host='127.0.0.1', port='auto')\nOpen the Shiny chat app\n\n\nEasily interact with an LLM by simply opening the Shiny app and using with the chat interface. If the app was closed, and reopened, chapy will reuse the exact same host and port as the first time it was opened.\nRestarting Python will automatically close the app.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nhost\n\nThe host of the Shiny app\n'127.0.0.1'\n\n\nport\n\nThe port to open the Shiny app in. Defaults to ‘auto’. If left ‘auto’, the chapy will look for an open port to use\n'auto'\n\n\n\n\n\n\nimport chapy\nchattr.app()"
   },
   {
     "objectID": "reference/app.html#details",
     "href": "reference/app.html#details",
     "title": "app",
     "section": "",
-    "text": "Easily interact with an LLM by simply opening the Shiny app and using with the chat interface. If the app was closed, and reopened, chattr will reuse the exact same host and port as the first time it was opened.\nRestarting Python will automatically close the app."
+    "text": "Easily interact with an LLM by simply opening the Shiny app and using with the chat interface. If the app was closed, and reopened, chapy will reuse the exact same host and port as the first time it was opened.\nRestarting Python will automatically close the app."
   },
   {
     "objectID": "reference/app.html#parameters",
     "href": "reference/app.html#parameters",
     "title": "app",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nhost\n\nThe host of the Shiny app\n'127.0.0.1'\n\n\nport\n\nThe port to open the Shiny app in. Defaults to ‘auto’. If left ‘auto’, the chattr will look for an open port to use\n'auto'"
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nhost\n\nThe host of the Shiny app\n'127.0.0.1'\n\n\nport\n\nThe port to open the Shiny app in. Defaults to ‘auto’. If left ‘auto’, the chapy will look for an open port to use\n'auto'"
   },
   {
     "objectID": "reference/app.html#examples",
     "href": "reference/app.html#examples",
     "title": "app",
     "section": "",
-    "text": "import chattr\nchattr.app()"
+    "text": "import chapy\nchattr.app()"
   },
   {
     "objectID": "reference/index.html#main-functions",

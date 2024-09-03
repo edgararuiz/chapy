@@ -1,4 +1,4 @@
-# session_defaults { #chattr.session_defaults }
+# session_defaults { #chapy.session_defaults }
 
 `session_defaults(**kwargs)`
 
@@ -8,8 +8,8 @@ View and set defaults for the session with LLM
 
 
 Change or add any default to use as options for your interaction with the
-LLM. The defaults will apply both in the console interaction (`chattr.chat()`),
-and the Shiny app interaction (`chattr.app()`)
+LLM. The defaults will apply both in the console interaction (`chapy.chat()`),
+and the Shiny app interaction (`chapy.app()`)
 
 ## Parameters
 
@@ -20,9 +20,9 @@ and the Shiny app interaction (`chattr.app()`)
 ## Examples
 
 ```python
-import chattr
-chattr.defaults()
+import chapy
+chapy.defaults()
 
 # Override the model to use
-chattr.defaults(model = "llama2")
+chapy.defaults(model = "llama2")
 ```

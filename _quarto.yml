@@ -12,7 +12,7 @@ format:
       dark: [cosmo, theme-dark.scss]
   
 website:
-  title: chattr
+  title: chapy
   navbar:
     left:
       - href: index.qmd
@@ -21,10 +21,10 @@ website:
         text: Reference
     right:
       - icon: github
-        href: https://github.com/edgararuiz/chattr-python
+        href: https://github.com/edgararuiz/chapy-python
 
 quartodoc:
-  package: chattr
+  package: chapy
   options: null
   style: pkgdown
   dir: reference

@@ -1,11 +1,11 @@
-# `chattr`
+# `chapy`
 
 ## Installation
 
 To install from Github:
 
 ```python
-pip install git+https://github.com/edgararuiz/chattr-python
+pip install git+https://github.com/edgararuiz/chapy-python
 ```
 
 ## Usage (from Positron)
@@ -17,20 +17,20 @@ This application has been developed and tested in the [Positron IDE](https://git
 To use in the console, use the `chat()` function:
 
 ```python
-import chattr
-chattr.chat("What package should I use to read parquet files?")
+import chapy
+chapy.chat("What package should I use to read parquet files?")
 ```
 
 ### Shiny app
 
-As with it's sister R package, `chattr` comes with a Shiny for Python app that provides chat-like interface with the LLM. To 
+As with it's sister R package, `chapy` comes with a Shiny for Python app that provides chat-like interface with the LLM. To 
 use, make sure to have the VSCode [Shiny extension](https://marketplace.visualstudio.com/items?itemName=Posit.shiny) installed. 
 
 To run the app use: 
 
 ```python
-import chattr
-chattr.app()
+import chapy
+chapy.app()
 ```
 
 ## Limitations

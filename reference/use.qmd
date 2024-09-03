@@ -1,4 +1,4 @@
-# use { #chattr.use }
+# use { #chapy.use }
 
 `use(provider='', **kwargs)`
 
@@ -23,6 +23,6 @@ laptop.
 ## Examples
 
 ```python
-import chattr
-chattr.use("ollama")
+import chapy
+chapy.use("ollama")
 ```
