@@ -15,9 +15,9 @@ Restarting Python will automatically close the app.
 
 ## Parameters
 
-| Name   | Type   | Description                                                                                                           | Default       |
-|--------|--------|-----------------------------------------------------------------------------------------------------------------------|---------------|
-| `host` |        | The host of the Shiny app                                                                                             | `'127.0.0.1'` |
+| Name   | Type   | Description                                                                                                          | Default       |
+|--------|--------|----------------------------------------------------------------------------------------------------------------------|---------------|
+| `host` |        | The host of the Shiny app                                                                                            | `'127.0.0.1'` |
 | `port` |        | The port to open the Shiny app in. Defaults to 'auto'. If left 'auto', the `chapy` will look for an open port to use | `'auto'`      |
 
 ## Examples
