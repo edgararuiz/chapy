@@ -34,8 +34,8 @@ app_ui = ui.page_fluid(
             ui.output_ui("value").add_style("margin-right: 40px; font-size:80%;"),
             ui.output_ui(id="main"),
         ),
-        top="80px",
-        left="0px",
+        top="90px",
+        left="20px",
         width="96%",
     ),
     ui.panel_fixed(
