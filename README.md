@@ -5,7 +5,7 @@
 To install from Github:
 
 ```python
-pip install git+https://github.com/edgararuiz/chapy-python
+pip install git+https://github.com/edgararuiz/chapy
 ```
 
 ## Usage (from Positron)

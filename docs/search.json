@@ -88,7 +88,7 @@
     "href": "index.html#installation",
     "title": "chapy",
     "section": "Installation",
-    "text": "Installation\nTo install from Github:\npip install git+https://github.com/edgararuiz/chapy-python"
+    "text": "Installation\nTo install from Github:\npip install git+https://github.com/edgararuiz/chapy"
   },
   {
     "objectID": "index.html#usage-from-positron",

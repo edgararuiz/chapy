@@ -21,7 +21,7 @@ website:
         text: Reference
     right:
       - icon: github
-        href: https://github.com/edgararuiz/chapy-python
+        href: https://github.com/edgararuiz/chapy
 
 quartodoc:
   package: chapy
