@@ -1,9 +1,9 @@
-from chattr.backend_ollama import (
+from chapy.backend_ollama import (
     _ch_submit_ollama,
     _ch_models_ollama,
     _ch_available_ollama,
 )
-from chattr.utils import _ch_open_config
+from chapy.utils import _ch_open_config
 from os import path
 from time import sleep
 from socket import socket
@@ -40,8 +40,8 @@ def use(provider="", **kwargs):
     Examples
     ------
     ```python
-    import chattr
-    chattr.use("ollama")
+    import chapy
+    chapy.use("ollama")
     ```
 
     """
@@ -52,7 +52,7 @@ def use(provider="", **kwargs):
     if provider == "":
         if _ch_available_ollama():
             models = models + _ch_models_ollama()
-        print("\033[3m--- chattr ----------------\033[0m")
+        print("\033[3m--- chapy ----------------\033[0m")
         for mod in models:
             model_no = model_no + 1
             print(str(model_no) + " - " + mod.get("label"))
@@ -76,8 +76,8 @@ def session_defaults(**kwargs):
     ------
 
     Change or add any default to use as options for your interaction with the
-    LLM. The defaults will apply both in the console interaction (`chattr.chat()`),
-    and the Shiny app interaction (`chattr.app()`)
+    LLM. The defaults will apply both in the console interaction (`chapy.chat()`),
+    and the Shiny app interaction (`chapy.app()`)
 
     Parameters
     ------
@@ -87,11 +87,11 @@ def session_defaults(**kwargs):
     Examples
     ------
     ```python
-    import chattr
-    chattr.defaults()
+    import chapy
+    chapy.defaults()
 
     # Override the model to use
-    chattr.defaults(model = "llama2")
+    chapy.defaults(model = "llama2")
     ```
 
     """
@@ -142,8 +142,8 @@ def chat(prompt, stream=True, preview=False, **kwargs):
     Examples
     ------
     ```python
-    import chattr
-    chattr.chat("How do I create a plot?")
+    import chapy
+    chapy.chat("How do I create a plot?")
     ```
     """
     global _history_file
@@ -192,7 +192,7 @@ def app(host="127.0.0.1", port="auto"):
     ------
     Easily interact with an LLM by simply opening the Shiny app and
     using with the chat interface. If the app was closed, and
-    reopened, `chattr` will reuse the exact same host and port as
+    reopened, `chapy` will reuse the exact same host and port as
     the first time it was opened.
 
     Restarting Python will automatically close the app.
@@ -203,14 +203,14 @@ def app(host="127.0.0.1", port="auto"):
         The host of the Shiny app
     port
         The port to open the Shiny app in. Defaults to 'auto'. If left
-        'auto', the `chattr` will look for an open port to use
+        'auto', the `chapy` will look for an open port to use
 
     Examples
     ------
 
     ```python
-    import chattr
-    chattr.app()
+    import chapy
+    chapy.app()
     ```
 
     """

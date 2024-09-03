@@ -1,6 +1,6 @@
 [project]
-name = "chattr"
-version = "0.0.4"
+name = "chapy"
+version = "0.0.5"
 authors = [
   { name="Edgar Ruiz", email="edgararuiz@gmail.com" },
 ]
@@ -15,9 +15,9 @@ dependencies = [
     "pyperclip>=1.9.0",
 ]
 [project.urls]
-  homepage = "https://github.com/edgararuiz/chattr-python"
-  documentation = "https://edgararuiz.github.io/chattr-python/"
-  issues = "https://github.com/edgararuiz/chattr-python/issues"
+  homepage = "https://github.com/edgararuiz/chapy"
+  documentation = "https://edgararuiz.github.io/chapy/"
+  issues = "https://github.com/edgararuiz/chapy/issues"
 [tool.setuptools]
-  packages=["chattr"]
+  packages=["chapy"]
   

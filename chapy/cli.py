@@ -9,17 +9,17 @@ def app_cli():
     parser.add_argument("--default", default="")
     args = parser.parse_args()
     if args.prompt != "":
-        import chattr
+        import chapy
 
         if args.history != "":
-            chattr.chat(
+            chapy.chat(
                 prompt=args.prompt,
                 stream=args.stream,
                 _history_file=args.history,
                 _default_file=args.default,
             )
         else:
-            chattr.chat(prompt=args.prompt, stream=args.stream)
+            chapy.chat(prompt=args.prompt, stream=args.stream)
 
 
 if __name__ == "__main__":
