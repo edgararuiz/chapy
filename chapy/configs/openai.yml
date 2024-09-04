@@ -1,0 +1,13 @@
+default:
+  provider: OpenAI
+  label: GPT 4 (OpenAI)
+  model: gpt-4
+  max_data_files: 0
+  max_data_frames: 0
+  include_doc_contents: FALSE
+  include_history: TRUE
+  system_msg: You are a helpful coding assistant that uses Python to analyze data. Keep coments brief
+  model_arguments:
+    temperature: 0.01
+    max_tokens: 1000
+    stream: TRUE

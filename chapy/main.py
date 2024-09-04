@@ -3,6 +3,11 @@ from chapy.backend_ollama import (
     _ch_models_ollama,
     _ch_available_ollama,
 )
+from chapy.backend_openai import (
+    _ch_submit_openai,
+    _ch_models_openai,
+    _ch_available_openai,
+)
 from chapy.utils import _ch_open_config
 from os import path
 from time import sleep
@@ -23,7 +28,7 @@ def use(provider="", **kwargs):
     Details
     ------
     Indicate which LLM and model you would like to use during your Python session.
-    At this time only Ollama models are supported.
+    At this time Ollama, and OpenAI, models are supported.
 
     Passing no `provider` will automatically prompt you to select a provider and a
     model. For Ollama, the models will be those currently installed in your
@@ -41,7 +46,10 @@ def use(provider="", **kwargs):
     ------
     ```python
     import chapy
+    
     chapy.use("ollama")
+
+    chapy.use("openai", model = "gpt4o")
     ```
 
     """
@@ -52,6 +60,8 @@ def use(provider="", **kwargs):
     if provider == "":
         if _ch_available_ollama():
             models = models + _ch_models_ollama()
+        if _ch_available_openai():
+            models = models + _ch_models_openai()
         print("\033[3m--- chapy ----------------\033[0m")
         for mod in models:
             model_no = model_no + 1
@@ -62,6 +72,8 @@ def use(provider="", **kwargs):
         model = m.get("model")
     if provider == "ollama":
         defaults = _ch_open_config("ollama")
+    if provider == "openai":
+        defaults = _ch_open_config("openai")        
     defaults = defaults.get("default")
     defaults = _merge_defaults(defaults, kwargs)
     if model != "":
@@ -176,6 +188,8 @@ def chat(prompt, stream=True, preview=False, **kwargs):
     response = ""
     if provider == "Ollama":
         response = _ch_submit_ollama(prompt, stream, preview, defaults)
+    elif provider == "OpenAI":
+        response = _ch_submit_openai(prompt, stream, preview, defaults)
     else:
         return
     if response == "":

@@ -95,28 +95,21 @@
     "href": "index.html#usage-from-positron",
     "title": "chapy",
     "section": "Usage (from Positron)",
-    "text": "Usage (from Positron)\nThis application has been developed and tested in the Positron IDE.\n\nConsole\nTo use in the console, use the chat() function:\nimport chapy\nchapy.chat(\"What package should I use to read parquet files?\")\n\n\nShiny app\nAs with it’s sister R package, chapy comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode Shiny extension installed.\nTo run the app use:\nimport chapy\nchapy.app()"
-  },
-  {
-    "objectID": "index.html#limitations",
-    "href": "index.html#limitations",
-    "title": "chapy",
-    "section": "Limitations",
-    "text": "Limitations\nThis package is very very new, so it has ALL the limitations :) At this time it only works with Olama, and it is hard coded to use the Llama 3.1 model.\nThe Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging.\n\n\nchapy - 0.0.5 | Developed by Edgar Ruiz"
+    "text": "Usage (from Positron)\nThis application has been developed and tested in the Positron IDE.\n\nConsole\nTo use in the console, use the chat() function:\nimport chapy\nchapy.chat(\"What package should I use to read parquet files?\")\nIf you have not specify the model you wish to use, chapy will prompt you to select one. The options will be based on your environment. If it finds Ollama, it will list your currently installed models. If it detects your OpenAI Token loaded in the OPENAI_API_KEY environment variable, it will display the current OpenAI models. Here is an example:\nimport chapy\nchapy.chat(\"What package should I use to read parquet files?\")\n\n--- chapy ----------------\n1 - Ollama - llama3.1:latest\n2 - OpenAI - gpt-3.5\n3 - OpenAI - gpt-4\n4 - OpenAI - gpt-4o\nChoose a model to use: \n\n\nShiny app\nAs with it’s sister R package, chapy comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode Shiny extension installed.\nTo run the app use:\nimport chapy\nchapy.app()\n\n\nchapy - 0.0.5 | Developed by Edgar Ruiz"
   },
   {
     "objectID": "reference/use.html",
     "href": "reference/use.html",
     "title": "use",
     "section": "",
-    "text": "use(provider='', **kwargs)\nSpecify which LLM you will use\n\n\nIndicate which LLM and model you would like to use during your Python session. At this time only Ollama models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprovider\n\nName of the LLM provider you wish to use. Currently, only ‘olama’ is supported\n''\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chapy\nchapy.use(\"ollama\")"
+    "text": "use(provider='', **kwargs)\nSpecify which LLM you will use\n\n\nIndicate which LLM and model you would like to use during your Python session. At this time Ollama, and OpenAI, models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprovider\n\nName of the LLM provider you wish to use. Currently, only ‘olama’ is supported\n''\n\n\n**kwargs\n\nArguments to override the defaults. Such as the ‘model’, amd ‘system_msg’\n{}\n\n\n\n\n\n\nimport chapy\n\nchapy.use(\"ollama\")\n\nchapy.use(\"openai\", model = \"gpt4o\")"
   },
   {
     "objectID": "reference/use.html#details",
     "href": "reference/use.html#details",
     "title": "use",
     "section": "",
-    "text": "Indicate which LLM and model you would like to use during your Python session. At this time only Ollama models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop."
+    "text": "Indicate which LLM and model you would like to use during your Python session. At this time Ollama, and OpenAI, models are supported.\nPassing no provider will automatically prompt you to select a provider and a model. For Ollama, the models will be those currently installed in your laptop."
   },
   {
     "objectID": "reference/use.html#parameters",
@@ -130,7 +123,7 @@
     "href": "reference/use.html#examples",
     "title": "use",
     "section": "",
-    "text": "import chapy\nchapy.use(\"ollama\")"
+    "text": "import chapy\n\nchapy.use(\"ollama\")\n\nchapy.use(\"openai\", model = \"gpt4o\")"
   },
   {
     "objectID": "reference/app.html",

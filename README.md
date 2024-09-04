@@ -1,5 +1,16 @@
 # `chapy`
 
+This package is meant to make it easy to chat with LLM's inside your IDE. You select an LLM to use
+for your Python session, and you can simply ask questions directly it, or use an included Shiny
+app. The Shiny app recognizes code, and adds a "copy" button, which allows you to easily bring
+it into your code. `chapy` also includes a default System Message, that tells the LLM that you
+want code in Python, so your chat will already have that context.
+
+The currently supported back ends are:
+
+- [Ollama](https://ollama.com/)
+- [OpenAI](https://platform.openai.com/docs/api-reference/introduction) 
+
 ## Installation
 
 To install from Github:
@@ -21,6 +32,23 @@ import chapy
 chapy.chat("What package should I use to read parquet files?")
 ```
 
+If you have not specify the model you wish to use, `chapy` will prompt you to select one. The options will
+be based on your environment. If it finds Ollama, it will list your currently installed models. If it
+detects your OpenAI Token loaded in the **OPENAI_API_KEY** environment variable, it will display the current
+OpenAI models. Here is an example:
+
+```python
+import chapy
+chapy.chat("What package should I use to read parquet files?")
+
+--- chapy ----------------
+1 - Ollama - llama3.1:latest
+2 - OpenAI - gpt-3.5
+3 - OpenAI - gpt-4
+4 - OpenAI - gpt-4o
+Choose a model to use: 
+```
+
 ### Shiny app
 
 As with it's sister R package, `chapy` comes with a Shiny for Python app that provides chat-like interface with the LLM. To 
@@ -32,11 +60,3 @@ To run the app use:
 import chapy
 chapy.app()
 ```
-
-## Limitations
-
-This package is very very new, so it has ALL the limitations :) At this time it only works with [Olama](https://ollama.com/download), 
-and it is hard coded to use the [Llama 3.1](https://ollama.com/library/llama3.1) model. 
-
-The Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each
-passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging. 
