@@ -32,6 +32,23 @@ import chapy
 chapy.chat("What package should I use to read parquet files?")
 ```
 
+If you have not specify the model you wish to use, `chapy` will prompt you to select one. The options will
+be based on your environment. If it finds Ollama, it will list your currently installed models. If it
+detects your OpenAI Token loaded in the **OPENAI_API_KEY** environment variable, it will display the current
+OpenAI models. Here is an example:
+
+```python
+import chapy
+chapy.chat("What package should I use to read parquet files?")
+
+--- chapy ----------------
+1 - Ollama - llama3.1:latest
+2 - OpenAI - gpt-3.5
+3 - OpenAI - gpt-4
+4 - OpenAI - gpt-4o
+Choose a model to use: 
+```
+
 ### Shiny app
 
 As with it's sister R package, `chapy` comes with a Shiny for Python app that provides chat-like interface with the LLM. To 

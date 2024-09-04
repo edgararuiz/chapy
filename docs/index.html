@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/edgararuiz/chapy/issues">Report a bug</a></p>
 <p><br></p>
 <p><span style="font-size: 22px; font-weight: 800;">Developers</span></p>
-<div id="c3a81823" class="cell" data-execution_count="2">
+<div id="6c556ce7" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <p>Edgar Ruiz</p>
 </div>
@@ -197,13 +197,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To use in the console, use the <code>chat()</code> function:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chapy</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chapy.chat(<span class="st">"What package should I use to read parquet files?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you have not specify the model you wish to use, <code>chapy</code> will prompt you to select one. The options will be based on your environment. If it finds Ollama, it will list your currently installed models. If it detects your OpenAI Token loaded in the <strong>OPENAI_API_KEY</strong> environment variable, it will display the current OpenAI models. Here is an example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chapy</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chapy.chat(<span class="st">"What package should I use to read parquet files?"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">---</span> chapy <span class="op">----------------</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">-</span> Ollama <span class="op">-</span> llama3<span class="fl">.1</span>:latest</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">-</span> OpenAI <span class="op">-</span> gpt<span class="op">-</span><span class="fl">3.5</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">-</span> OpenAI <span class="op">-</span> gpt<span class="op">-</span><span class="dv">4</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="op">-</span> OpenAI <span class="op">-</span> gpt<span class="op">-</span><span class="dv">4</span><span class="er">o</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Choose a model to use: </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="shiny-app" class="level3">
 <h3 class="anchored" data-anchor-id="shiny-app">Shiny app</h3>
 <p>As with it’s sister R package, <code>chapy</code> comes with a Shiny for Python app that provides chat-like interface with the LLM. To use, make sure to have the VSCode <a href="https://marketplace.visualstudio.com/items?itemName=Posit.shiny">Shiny extension</a> installed.</p>
 <p>To run the app use:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chapy</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chapy.app()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chapy</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>chapy.app()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="footer" style="text-align: center;">
 <hr>
 <p>chapy - 0.0.5 | Developed by Edgar Ruiz</p>
