@@ -1,9 +1,5 @@
 from chapy.utils import _ch_open_config
-from requests import post, get
-from json import dumps, loads
-from sys import stdout
-import socket
-
+import ollama 
 
 def _ch_submit_ollama(prompt, stream=True, preview=False, defaults={}):
     messages = []
@@ -21,31 +17,24 @@ def _ch_submit_ollama(prompt, stream=True, preview=False, defaults={}):
         print(data)
         return ""
 
-    response = post(
-        url=defaults.get("path") + "api/chat",
-        data=dumps(data),
-        headers={"Content-Type": "application/json"},
-        stream=stream,
-    )
+    response = ollama.chat(
+        messages=messages, 
+        keep_alive="5m", 
+        model=defaults.get("model"), 
+        stream=stream
+        )
 
-    out = ""
-    for line in response.iter_lines():
-        body = loads(line)
-        resp = body.get("message")
-        content = resp.get("content")
-        out = out + content
-        stdout.write(content)
+    full_out = ""
+    for chunk in response:
+        out = chunk['message']['content']
+        full_out = full_out + out 
+        print(out, end='', flush=True)
 
-    return out
-
+    return full_out
 
 def _ch_models_ollama():
     defaults = _ch_open_config("ollama").get("default")
-    response = get(url=defaults.get("path") + "api/tags")
-    tags = []
-    for tag in response.iter_lines():
-        tags.append(loads(tag))
-    tags = tags[0]
+    tags = ollama.list()
     models = tags.get("models")
     out = []
     for model in models:
@@ -59,18 +48,10 @@ def _ch_models_ollama():
 
 
 def _ch_available_ollama():
-    defaults = _ch_open_config("ollama").get("default")
-    import socket
-
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    path = defaults.get("path")
-    ps = path.split(":")
-    url = ps[1].removeprefix("//")
-    port = ps[2].split("/")[0]
-    result = sock.connect_ex((url, int(port)))
-    if result == 0:
-        out = True
-    else:
+    out = True
+    try:
+        ollama.list()
+    except:
         out = False
-    sock.close()
+
     return out

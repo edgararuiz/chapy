@@ -51,6 +51,29 @@ wheels = [
 ]
 
 [[package]]
+name = "chapy"
+version = "0.0.5"
+source = { editable = "." }
+dependencies = [
+    { name = "faicons" },
+    { name = "ollama" },
+    { name = "pyaml" },
+    { name = "pyperclip" },
+    { name = "requests" },
+    { name = "shiny" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "faicons", specifier = ">=0.2.2" },
+    { name = "ollama" },
+    { name = "pyaml", specifier = ">=24.7.0" },
+    { name = "pyperclip", specifier = ">=1.9.0" },
+    { name = "requests", specifier = ">=2.32.3" },
+    { name = "shiny", specifier = ">=1.0.0" },
+]
+
+[[package]]
 name = "charset-normalizer"
 version = "3.3.2"
 source = { registry = "https://pypi.org/simple" }
@@ -135,27 +158,6 @@ wheels = [
 ]
 
 [[package]]
-name = "chapy"
-version = "0.0.3"
-source = { editable = "." }
-dependencies = [
-    { name = "faicons" },
-    { name = "pyaml" },
-    { name = "pyperclip" },
-    { name = "requests" },
-    { name = "shiny" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "faicons", specifier = ">=0.2.2" },
-    { name = "pyaml", specifier = ">=24.7.0" },
-    { name = "pyperclip" },
-    { name = "requests", specifier = ">=2.32.3" },
-    { name = "shiny", specifier = ">=1.0.0" },
-]
-
-[[package]]
 name = "click"
 version = "8.1.7"
 source = { registry = "https://pypi.org/simple" }
@@ -220,6 +222,35 @@ wheels = [
 ]
 
 [[package]]
+name = "httpcore"
+version = "1.0.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "h11" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/17/b0/5e8b8674f8d203335a62fdfcfa0d11ebe09e23613c3391033cbba35f7926/httpcore-1.0.5.tar.gz", hash = "sha256:34a38e2f9291467ee3b44e89dd52615370e152954ba21721378a87b2960f7a61", size = 83234 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/78/d4/e5d7e4f2174f8a4d63c8897d79eb8fe2503f7ecc03282fee1fa2719c2704/httpcore-1.0.5-py3-none-any.whl", hash = "sha256:421f18bac248b25d310f3cacd198d55b8e6125c107797b609ff9b7a6ba7991b5", size = 77926 },
+]
+
+[[package]]
+name = "httpx"
+version = "0.27.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "certifi" },
+    { name = "httpcore" },
+    { name = "idna" },
+    { name = "sniffio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/78/82/08f8c936781f67d9e6b9eeb8a0c8b4e406136ea4c3d1f89a5db71d42e0e6/httpx-0.27.2.tar.gz", hash = "sha256:f7c2be1d2f3c3c3160d441802406b206c2b76f5947b11115e6df10c6c65e66c2", size = 144189 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/56/95/9377bcb415797e44274b51d46e3249eba641711cf3348050f76ee7b15ffc/httpx-0.27.2-py3-none-any.whl", hash = "sha256:7bb2708e112d8fdd7829cd4243970f0c223274051cb35ee80c03301ee29a3df0", size = 76395 },
+]
+
+[[package]]
 name = "idna"
 version = "3.8"
 source = { registry = "https://pypi.org/simple" }
@@ -271,6 +302,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979 },
+]
+
+[[package]]
+name = "ollama"
+version = "0.3.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/58/25/02f994497d39a9e5c89b4ae1111f109bd88c6139c13c16cb3c74ca529fd1/ollama-0.3.2.tar.gz", hash = "sha256:7deb3287cdefa1c39cc046163096f8597b83f59ca31a1f8ae78e71eccb7af95f", size = 10394 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2b/2f/1c24d325622e05ea0d1ef0d44c362b0303e5b74ad8415f4ba15074c5ea2b/ollama-0.3.2-py3-none-any.whl", hash = "sha256:ed2a6f752bd91c49b477d84a259c5657785d7777689d4a27ffe0a4d5b5dd3cae", size = 10263 },
 ]
 
 [[package]]
