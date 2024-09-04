@@ -1,5 +1,16 @@
 # `chapy`
 
+This package is meant to make it easy to chat with LLM's inside your IDE. You select an LLM to use
+for your Python session, and you can simply ask questions directly it, or use an included Shiny
+app. The Shiny app recognizes code, and adds a "copy" button, which allows you to easily bring
+it into your code. `chapy` also includes a default System Message, that tells the LLM that you
+want code in Python, so your chat will already have that context.
+
+The currently supported back ends are:
+
+- [Ollama](https://ollama.com/)
+- [OpenAI](https://platform.openai.com/docs/api-reference/introduction) 
+
 ## Installation
 
 To install from Github:
@@ -32,11 +43,3 @@ To run the app use:
 import chapy
 chapy.app()
 ```
-
-## Limitations
-
-This package is very very new, so it has ALL the limitations :) At this time it only works with [Olama](https://ollama.com/download), 
-and it is hard coded to use the [Llama 3.1](https://ollama.com/library/llama3.1) model. 
-
-The Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each
-passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging. 

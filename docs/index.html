@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/edgararuiz/chapy/issues">Report a bug</a></p>
 <p><br></p>
 <p><span style="font-size: 22px; font-weight: 800;">Developers</span></p>
-<div id="332ce437" class="cell" data-execution_count="2">
+<div id="c3a81823" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <p>Edgar Ruiz</p>
 </div>
@@ -178,6 +178,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div></div><section id="chapy" class="level1">
 <h1><code>chapy</code></h1>
+<p>This package is meant to make it easy to chat with LLM’s inside your IDE. You select an LLM to use for your Python session, and you can simply ask questions directly it, or use an included Shiny app. The Shiny app recognizes code, and adds a “copy” button, which allows you to easily bring it into your code. <code>chapy</code> also includes a default System Message, that tells the LLM that you want code in Python, so your chat will already have that context.</p>
+<p>The currently supported back ends are:</p>
+<ul>
+<li><a href="https://ollama.com/">Ollama</a></li>
+<li><a href="https://platform.openai.com/docs/api-reference/introduction">OpenAI</a></li>
+</ul>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>To install from Github:</p>
@@ -198,18 +204,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To run the app use:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chapy</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chapy.app()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
-<p>This package is very very new, so it has ALL the limitations :) At this time it only works with <a href="https://ollama.com/download">Olama</a>, and it is hard coded to use the <a href="https://ollama.com/library/llama3.1">Llama 3.1</a> model.</p>
-<p>The Shiny app lacks much of the capabilities of its R countepart. At this time it is an MVP, which it is being enhanced with each passing day. The rest of the package lacks the infrastructure of session tracking, and user CLI messaging.</p>
 <div class="footer" style="text-align: center;">
 <hr>
 <p>chapy - 0.0.5 | Developed by Edgar Ruiz</p>
 </div>
 
 
+</section>
 </section>
 </section>
 

@@ -28,7 +28,7 @@ def use(provider="", **kwargs):
     Details
     ------
     Indicate which LLM and model you would like to use during your Python session.
-    At this time only Ollama models are supported.
+    At this time Ollama, and OpenAI, models are supported.
 
     Passing no `provider` will automatically prompt you to select a provider and a
     model. For Ollama, the models will be those currently installed in your
@@ -46,7 +46,10 @@ def use(provider="", **kwargs):
     ------
     ```python
     import chapy
+    
     chapy.use("ollama")
+
+    chapy.use("openai", model = "gpt4o")
     ```
 
     """
