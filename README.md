@@ -1,4 +1,4 @@
-# `chapy`
+# chapy
 
 This package is meant to make it easy to chat with LLM's inside your IDE. You select an LLM to use
 for your Python session, and you can simply ask questions directly it, or use an included Shiny
